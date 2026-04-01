@@ -843,66 +843,77 @@
       border: 1px solid rgba(247, 246, 243, 0.1);
     }
 
-    /* ── TESTIMONIAL ───────────────────────────────────────── */
-    .testimonial {
-      background: var(--accent-pale);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+    /* ── WHY US ─────────────────────────────────────────────── */
+    .why-us {
+      background: var(--ink);
       padding: 100px 48px;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
-
-    .testimonial-left {
+    .why-us-header {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+      gap: 40px;
     }
-
-    .testimonial-name {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--ink);
-      letter-spacing: -0.01em;
-    }
-
-    .testimonial-role {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--secondary);
-    }
-
-    .testimonial-avatar {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      background: var(--border);
-      margin-bottom: 16px;
-      overflow: hidden;
-      border: 2px solid var(--border);
-    }
-
-    .testimonial-quote {
+    .why-us-headline {
       font-family: var(--serif);
-      font-size: clamp(1.5rem, 2.5vw, 2.4rem);
-      line-height: 1.35;
+      font-size: clamp(2.2rem, 3.5vw, 3.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--canvas);
+    }
+    .why-us-headline em { font-style: italic; color: rgba(247,246,243,0.35); }
+    .why-us-sub {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: rgba(247,246,243,0.4);
+      max-width: 320px;
+      flex-shrink: 0;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .why-card {
+      background: var(--ink);
+      padding: 40px 32px;
+      transition: background 240ms var(--ease-out-expo);
+    }
+    .why-card:hover { background: #1A1A1A; }
+    .why-card-num {
+      font-family: var(--serif);
+      font-size: 3.2rem;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--canvas);
+      margin-bottom: 16px;
+    }
+    .why-card-num span {
+      font-size: 1.4rem;
       letter-spacing: -0.02em;
-      color: var(--ink);
+      color: rgba(247,246,243,0.5);
     }
-
-    .testimonial-quote::before {
-      content: '\201C';
-      color: var(--accent);
+    .why-card h3 {
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--canvas);
+      margin-bottom: 10px;
     }
-
-    .testimonial-quote::after {
-      content: '\201D';
-      color: var(--accent);
+    .why-card p {
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: rgba(247,246,243,0.4);
     }
+    @media (max-width: 1024px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 768px)  { .why-grid { grid-template-columns: 1fr; } .why-us-header { flex-direction: column; align-items: flex-start; } }
 
     /* ── TECH STACK ────────────────────────────────────────── */
     .tech {
@@ -1527,17 +1538,38 @@
     </div>
   </section>
 
-  <!-- TESTIMONIAL -->
-  <div class="testimonial">
-    <div class="testimonial-left reveal">
-      <div class="testimonial-avatar"></div>
-      <div class="testimonial-name">Clara Voss</div>
-      <div class="testimonial-role">CEO, Meridian Advisory</div>
+  <!-- WHY US -->
+  <div class="why-us">
+    <div class="why-us-header">
+      <h2 class="why-us-headline reveal">
+        Why clients<br>choose <em>Aistrion</em>
+      </h2>
+      <p class="why-us-sub reveal" data-delay="1">
+        We hold ourselves to measurable standards — not just beautiful screenshots.
+      </p>
     </div>
-    <blockquote class="testimonial-quote reveal" data-delay="1">
-      They didn't just redesign our site. They diagnosed why it was underperforming and fixed the actual problem. We saw
-      a 340% increase in qualified leads within eight weeks of launch.
-    </blockquote>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-card-num">95<span>+</span></div>
+        <h3>Lighthouse score, guaranteed</h3>
+        <p>Every site we ship scores 95 or above on Google Lighthouse — fast, accessible, and built to rank.</p>
+      </div>
+      <div class="why-card reveal" data-delay="1">
+        <div class="why-card-num">6<span>wk</span></div>
+        <h3>Median delivery time</h3>
+        <p>From signed brief to live site in six weeks. We keep scope tight and momentum high so you're not waiting months.</p>
+      </div>
+      <div class="why-card reveal" data-delay="2">
+        <div class="why-card-num">100<span>%</span></div>
+        <h3>Production-ready code</h3>
+        <p>No placeholders, no shortcuts. Every line of code is documented, maintainable, and ready for your team to extend.</p>
+      </div>
+      <div class="why-card reveal" data-delay="3">
+        <div class="why-card-num">60<span>day</span></div>
+        <h3>Post-launch support</h3>
+        <p>We stay on after launch — monitoring, fixing, and improving based on real visitor data for the first 60 days.</p>
+      </div>
+    </div>
   </div>
 
   <!-- TECH -->
