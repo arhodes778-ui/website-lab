@@ -1201,7 +1201,7 @@
   <!-- HERO -->
   <section class="hero">
     <!-- Video background -->
-    <video class="hero-video" autoplay muted loop playsinline>
+    <video class="hero-video" autoplay muted playsinline id="heroVideo">
       <source src="Website.mp4" type="video/mp4" />
     </video>
     <!-- Inward masking gradient -->
@@ -1647,6 +1647,29 @@
   </div>
 
   <script>
+
+    // ── HERO VIDEO — play on enter, fade out on end, replay on re-enter
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+      // Fade the video out to canvas colour when it finishes
+      heroVideo.addEventListener('ended', () => {
+        heroVideo.style.transition = 'opacity 800ms cubic-bezier(0.16,1,0.3,1)';
+        heroVideo.style.opacity = '0';
+      });
+
+      // Replay + reset opacity each time the hero scrolls back into view
+      const heroObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            heroVideo.style.transition = 'opacity 400ms cubic-bezier(0.16,1,0.3,1)';
+            heroVideo.style.opacity = '1';
+            heroVideo.currentTime = 0;
+            heroVideo.play();
+          }
+        });
+      }, { threshold: 0.2 });
+      heroObs.observe(document.querySelector('.hero'));
+    }
 
     // ── SCROLL REVEAL
     const reveals = document.querySelectorAll('.reveal');
