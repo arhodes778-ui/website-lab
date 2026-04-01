@@ -1190,7 +1190,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Aistrion</a>
+    <a href="#" class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Aistrion</a>
     <ul class="nav-links">
       <li><a href="#work">Work</a></li>
       <li><a href="#services">Services</a></li>
@@ -1461,10 +1461,10 @@
           Projects we're<br><em>proud</em> to have shipped
         </h2>
       </div>
-      <a href="#" class="work-link reveal" data-delay="2">All case studies →</a>
+      <a href="#contact" class="work-link reveal" data-delay="2">Start a project →</a>
     </div>
     <div class="work-bento">
-      <div class="work-card">
+      <div class="work-card" onclick="document.getElementById('bookingOverlay').classList.add('open');document.body.style.overflow='hidden';" style="cursor:pointer">
         <div class="work-card-visual">
           <div class="work-card-bg bg-warm-dark" style="height:100%">
             <div class="grid-texture"></div>
@@ -1484,7 +1484,7 @@
           </div>
         </div>
       </div>
-      <div class="work-card">
+      <div class="work-card" onclick="document.getElementById('bookingOverlay').classList.add('open');document.body.style.overflow='hidden';" style="cursor:pointer">
         <div class="work-card-visual">
           <div class="work-card-bg bg-cool-stone" style="height:100%">
             <div class="floating-label" style="color:rgba(17,17,17,0.4);background:rgba(255,255,255,0.5);">E-Commerce
@@ -1504,7 +1504,7 @@
           </div>
         </div>
       </div>
-      <div class="work-card">
+      <div class="work-card" onclick="document.getElementById('bookingOverlay').classList.add('open');document.body.style.overflow='hidden';" style="cursor:pointer">
         <div class="work-card-visual">
           <div class="work-card-bg bg-ink-warm" style="height:100%">
             <div class="grid-texture"></div>
@@ -1626,20 +1626,20 @@
     <div class="footer-col">
       <h4>Services</h4>
       <ul>
-        <li><a href="#">Marketing Websites</a></li>
-        <li><a href="#">Web Applications</a></li>
-        <li><a href="#">E-Commerce</a></li>
-        <li><a href="#">Brand &amp; Identity</a></li>
-        <li><a href="#">Retainers</a></li>
+        <li><a href="#services">Marketing Websites</a></li>
+        <li><a href="#services">Web Applications</a></li>
+        <li><a href="#services">E-Commerce</a></li>
+        <li><a href="#services">Brand &amp; Identity</a></li>
+        <li><a href="#services">Retainers</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Studio</h4>
       <ul>
-        <li><a href="#">Work</a></li>
-        <li><a href="#">Process</a></li>
-        <li><a href="#">Writing</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="mailto:contact@aistrion.com">Email us</a></li>
       </ul>
     </div>
   </footer>
