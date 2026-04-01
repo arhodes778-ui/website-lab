@@ -1245,20 +1245,23 @@
     <!-- Stats row -->
     <div class="hero-stats-bar reveal" data-delay="4">
       <div class="stat-cell">
-        <div class="stat-num">147</div>
-        <div class="stat-label">Sites launched</div>
+        <div class="stat-num">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="display:inline-block;vertical-align:middle;margin-right:6px"><circle cx="9" cy="9" r="4" fill="#4CAF50"/><circle cx="9" cy="9" r="7" stroke="#4CAF50" stroke-opacity="0.25" stroke-width="2"/></svg>
+          Open
+        </div>
+        <div class="stat-label">Available for new projects</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-num">4.8×</div>
-        <div class="stat-label">Avg. conversion lift</div>
+        <div class="stat-num">UK</div>
+        <div class="stat-label">Based in the United Kingdom</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-num">6wk</div>
-        <div class="stat-label">Median delivery</div>
+        <div class="stat-num">24hr</div>
+        <div class="stat-label">Response time guaranteed</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-num">98</div>
-        <div class="stat-label">Lighthouse score</div>
+        <div class="stat-num">Free</div>
+        <div class="stat-label">Discovery call, no commitment</div>
       </div>
     </div>
   </section>
@@ -1783,48 +1786,6 @@
       });
     });
 
-    // ── SCROLL COUNTER ANIMATION
-    function animateCount(el, target, suffix = '') {
-      let start = 0;
-      const duration = 1400;
-      const step = timestamp => {
-        if (!start) start = timestamp;
-        const progress = Math.min((timestamp - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 4);
-        el.textContent = Math.floor(eased * target) + suffix;
-        if (progress < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }
-
-    const statsObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const nums = entry.target.querySelectorAll('.stat-num');
-          const targets = [147, 4.8, 6, 98];
-          const suffixes = ['', '×', 'wk', ''];
-          nums.forEach((el, i) => {
-            if (i === 1) {
-              let s = 0, start = null;
-              const step = ts => {
-                if (!start) start = ts;
-                const p = Math.min((ts - start) / 1400, 1);
-                const e = 1 - Math.pow(1 - p, 4);
-                el.textContent = (e * 4.8).toFixed(1) + '×';
-                if (p < 1) requestAnimationFrame(step);
-              };
-              requestAnimationFrame(step);
-            } else {
-              animateCount(el, targets[i], suffixes[i]);
-            }
-          });
-          statsObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    const statsEl = document.querySelector('.hero-stats-bar');
-    if (statsEl) statsObserver.observe(statsEl);
   </script>
 
   <!-- ── BOOKING MODAL ─────────────────────────────────────── -->
