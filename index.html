@@ -1645,7 +1645,7 @@
             stroke-linejoin="round" />
         </svg>
       </a>
-      <a href="#" class="btn-cta-ghost">Book a discovery call</a>
+      <a href="#" class="btn-cta-ghost" id="openBooking">Book a discovery call</a>
     </div>
   </section>
 
@@ -1770,6 +1770,509 @@
 
     const statsEl = document.querySelector('.hero-stats-bar');
     if (statsEl) statsObserver.observe(statsEl);
+  </script>
+
+  <!-- ── BOOKING MODAL ─────────────────────────────────────── -->
+  <style>
+    .booking-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(17,17,17,0.6);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 320ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .booking-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .booking-modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 780px;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      transform: translateY(24px);
+      transition: transform 360ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .booking-overlay.open .booking-modal {
+      transform: translateY(0);
+    }
+    .booking-left {
+      padding: 40px 36px;
+      border-right: 1px solid var(--border);
+    }
+    .booking-right {
+      padding: 40px 36px;
+    }
+    .booking-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--secondary);
+      font-size: 1.1rem;
+      transition: background 200ms, color 200ms;
+      z-index: 10;
+    }
+    .booking-close:hover { background: var(--ink); color: var(--surface); }
+    .booking-modal { position: relative; }
+    .booking-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 20px;
+    }
+    .booking-title {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .booking-subtitle {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    /* Calendar */
+    .cal-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .cal-month {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .cal-btn {
+      width: 28px; height: 28px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--secondary);
+      transition: background 180ms, color 180ms;
+    }
+    .cal-btn:hover { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+    .cal-day-name {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      text-align: center;
+      padding: 4px 0 8px;
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--ink);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 160ms, color 160ms;
+      border: 1px solid transparent;
+    }
+    .cal-day:hover:not(.disabled):not(.empty) { background: var(--canvas); border-color: var(--border); }
+    .cal-day.selected { background: var(--ink); color: var(--surface); }
+    .cal-day.today { border-color: var(--accent); }
+    .cal-day.disabled { color: var(--border); pointer-events: none; }
+    .cal-day.empty { pointer-events: none; }
+
+    /* Time slots */
+    .time-slots {
+      margin-top: 24px;
+      display: none;
+    }
+    .time-slots.visible { display: block; }
+    .time-slots-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+    .slots-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .slot {
+      font-size: 0.78rem;
+      text-align: center;
+      padding: 8px 4px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      cursor: pointer;
+      color: var(--ink);
+      transition: background 160ms, border-color 160ms, color 160ms;
+    }
+    .slot:hover { background: var(--canvas); }
+    .slot.selected { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+
+    /* Form */
+    .booking-form { display: none; flex-direction: column; gap: 14px; }
+    .booking-form.visible { display: flex; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--secondary);
+    }
+    .form-input, .form-textarea {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      color: var(--ink);
+      background: var(--canvas);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 11px 14px;
+      outline: none;
+      transition: border-color 200ms;
+      resize: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--ink); }
+    .form-textarea { height: 90px; }
+    .booking-selected-info {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      color: var(--secondary);
+      background: var(--canvas);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 4px;
+    }
+    .booking-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--surface);
+      background: var(--ink);
+      border: none;
+      border-radius: 6px;
+      padding: 14px;
+      cursor: pointer;
+      transition: background 220ms, transform 180ms;
+      margin-top: 4px;
+    }
+    .booking-submit:hover { background: #2A2A2A; transform: translateY(-1px); }
+    .booking-submit:disabled { opacity: 0.5; pointer-events: none; }
+    .booking-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      gap: 16px;
+    }
+    .booking-success.visible { display: flex; }
+    .success-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--canvas);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .success-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .success-body { font-size: 0.88rem; color: var(--secondary); line-height: 1.7; }
+    @media (max-width: 640px) {
+      .booking-modal { grid-template-columns: 1fr; }
+      .booking-left { border-right: none; border-bottom: 1px solid var(--border); padding: 32px 24px; }
+      .booking-right { padding: 32px 24px; }
+    }
+  </style>
+
+  <!-- BOOKING MODAL HTML -->
+  <div class="booking-overlay" id="bookingOverlay">
+    <div class="booking-modal">
+      <button class="booking-close" id="closeBooking">&#x2715;</button>
+
+      <!-- Left: Calendar -->
+      <div class="booking-left">
+        <div class="booking-label">Schedule a call</div>
+        <h2 class="booking-title">Book a discovery call</h2>
+        <p class="booking-subtitle">30 minutes · Free · No commitment</p>
+
+        <div class="cal-nav">
+          <button class="cal-btn" id="calPrev">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M8 2L4 6l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <span class="cal-month" id="calMonth"></span>
+          <button class="cal-btn" id="calNext">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+
+        <div class="time-slots" id="timeSlots">
+          <div class="time-slots-label">Available times</div>
+          <div class="slots-grid" id="slotsGrid"></div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="booking-right">
+        <div class="booking-label">Your details</div>
+        <p class="booking-subtitle" id="formPrompt">Select a date and time to continue.</p>
+
+        <div class="booking-selected-info" id="selectedInfo" style="display:none"></div>
+
+        <form class="booking-form" id="bookingForm">
+          <div class="form-group">
+            <label class="form-label">Full name</label>
+            <input class="form-input" type="text" name="from_name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email address</label>
+            <input class="form-input" type="email" name="reply_to" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Company / Website (optional)</label>
+            <input class="form-input" type="text" name="company" placeholder="acme.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tell us about your project</label>
+            <textarea class="form-textarea" name="message" placeholder="What are you looking to build?"></textarea>
+          </div>
+          <button type="submit" class="booking-submit" id="submitBtn">
+            Request this time
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </form>
+
+        <div class="booking-success" id="bookingSuccess">
+          <div class="success-icon">✓</div>
+          <div class="success-title">Request sent</div>
+          <p class="success-body">We've received your booking request and sent a confirmation to your email. The Aistrion team will be in touch shortly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // ── CONFIG — replace these with your EmailJS values
+    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+    const EMAILJS_TEMPLATE_NOTIFY = 'YOUR_NOTIFY_TEMPLATE_ID';   // email to you
+    const EMAILJS_TEMPLATE_AUTO   = 'YOUR_AUTO_TEMPLATE_ID';     // auto-reply to client
+
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    // ── CALENDAR
+    const TIME_SLOTS = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM',
+                        '1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM',
+                        '4:00 PM','4:30 PM'];
+    const MONTHS = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+    const DAYS   = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+    let currentDate  = new Date();
+    let selectedDate = null;
+    let selectedTime = null;
+
+    function renderCalendar() {
+      const year  = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+      const today = new Date();
+      today.setHours(0,0,0,0);
+
+      document.getElementById('calMonth').textContent = MONTHS[month] + ' ' + year;
+
+      const grid = document.getElementById('calGrid');
+      grid.innerHTML = '';
+
+      // Day names
+      DAYS.forEach(d => {
+        const el = document.createElement('div');
+        el.className = 'cal-day-name';
+        el.textContent = d;
+        grid.appendChild(el);
+      });
+
+      const firstDay = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      for (let i = 0; i < firstDay; i++) {
+        const el = document.createElement('div');
+        el.className = 'cal-day empty';
+        grid.appendChild(el);
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const el = document.createElement('div');
+        el.className = 'cal-day';
+        el.textContent = d;
+
+        const thisDate = new Date(year, month, d);
+        thisDate.setHours(0,0,0,0);
+        const dayOfWeek = thisDate.getDay();
+
+        if (thisDate < today || dayOfWeek === 0 || dayOfWeek === 6) {
+          el.classList.add('disabled');
+        } else {
+          if (thisDate.toDateString() === today.toDateString()) el.classList.add('today');
+          if (selectedDate && thisDate.toDateString() === selectedDate.toDateString()) el.classList.add('selected');
+          el.addEventListener('click', () => selectDate(new Date(year, month, d)));
+        }
+        grid.appendChild(el);
+      }
+    }
+
+    function selectDate(date) {
+      selectedDate = date;
+      selectedTime = null;
+      renderCalendar();
+      renderSlots();
+      document.getElementById('timeSlots').classList.add('visible');
+      updateFormVisibility();
+    }
+
+    function renderSlots() {
+      const grid = document.getElementById('slotsGrid');
+      grid.innerHTML = '';
+      TIME_SLOTS.forEach(t => {
+        const el = document.createElement('div');
+        el.className = 'slot' + (t === selectedTime ? ' selected' : '');
+        el.textContent = t;
+        el.addEventListener('click', () => { selectedTime = t; renderSlots(); updateFormVisibility(); });
+        grid.appendChild(el);
+      });
+    }
+
+    function updateFormVisibility() {
+      const form    = document.getElementById('bookingForm');
+      const prompt  = document.getElementById('formPrompt');
+      const info    = document.getElementById('selectedInfo');
+
+      if (selectedDate && selectedTime) {
+        const dateStr = selectedDate.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+        info.textContent  = dateStr + ' at ' + selectedTime;
+        info.style.display = 'block';
+        prompt.style.display = 'none';
+        form.classList.add('visible');
+      } else {
+        info.style.display = 'none';
+        prompt.style.display = 'block';
+        form.classList.remove('visible');
+      }
+    }
+
+    document.getElementById('calPrev').addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar();
+    });
+    document.getElementById('calNext').addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar();
+    });
+
+    renderCalendar();
+
+    // ── MODAL OPEN / CLOSE
+    document.getElementById('openBooking').addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('bookingOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('closeBooking').addEventListener('click', () => closeModal());
+    document.getElementById('bookingOverlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('bookingOverlay')) closeModal();
+    });
+    function closeModal() {
+      document.getElementById('bookingOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ── FORM SUBMIT
+    document.getElementById('bookingForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const form = e.target;
+      const dateStr = selectedDate.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+      const params = {
+        from_name:    form.from_name.value,
+        reply_to:     form.reply_to.value,
+        company:      form.company.value || 'Not provided',
+        message:      form.message.value || 'No message provided',
+        booking_date: dateStr,
+        booking_time: selectedTime,
+        to_email:     'contact@aistrion.com'
+      };
+
+      try {
+        // Send notification to you
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_NOTIFY, params);
+        // Send auto-reply to client
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_AUTO, params);
+
+        document.getElementById('bookingForm').classList.remove('visible');
+        document.getElementById('selectedInfo').style.display = 'none';
+        document.getElementById('formPrompt').style.display = 'none';
+        document.getElementById('bookingSuccess').classList.add('visible');
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Request this time';
+        alert('Something went wrong. Please email us directly at contact@aistrion.com');
+      }
+    });
   </script>
 </body>
 
