@@ -1284,7 +1284,12 @@
         border-radius: 0;
         margin: 0;
       }
-      .hero-mask { display: block; }
+      .hero-mask {
+        display: block;
+        background:
+          linear-gradient(to bottom, var(--canvas) 0%, transparent 18%),
+          linear-gradient(to top, var(--canvas) 0%, transparent 18%);
+      }
       .hero-headline { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: 12px; }
       .hero-body { font-size: 0.85rem; margin-bottom: 16px; }
       .hero-tag { font-size: 0.62rem; margin-bottom: 16px; }
