@@ -514,8 +514,8 @@
     .marquee-track {
       display: flex;
       gap: 0;
-      animation: marquee 28s linear infinite;
       white-space: nowrap;
+      will-change: transform;
     }
 
     .marquee-item {
@@ -536,15 +536,6 @@
       font-size: 1.2rem;
     }
 
-    @keyframes marquee {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
 
     /* ── SECTIONS ──────────────────────────────────────────── */
     section {
@@ -1881,48 +1872,52 @@
 
     reveals.forEach(el => io.observe(el));
 
-    // ── MARQUEE DRAG
+    // ── MARQUEE DRAG + AUTO-SCROLL
     const marqueeStrip = document.querySelector('.marquee-strip');
     const marqueeTrack = document.querySelector('.marquee-track');
     if (marqueeStrip && marqueeTrack) {
-      let isDragging = false;
+      let offset = 0;
+      let dragging = false;
       let startX = 0;
-      let dragOffset = 0;
-      let currentOffset = 0;
+      let startOffset = 0;
+      const speed = 0.6; // px per frame
+      const halfWidth = marqueeTrack.scrollWidth / 2;
 
-      const pause = () => marqueeTrack.style.animationPlayState = 'paused';
-      const resume = () => marqueeTrack.style.animationPlayState = 'running';
+      function tick() {
+        if (!dragging) offset -= speed;
+        if (offset <= -halfWidth) offset += halfWidth;
+        marqueeTrack.style.transform = `translateX(${offset}px)`;
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
 
+      // Mouse
       marqueeStrip.addEventListener('mousedown', e => {
-        isDragging = true;
+        dragging = true;
         startX = e.clientX;
-        currentOffset = dragOffset;
-        pause();
+        startOffset = offset;
         marqueeStrip.style.cursor = 'grabbing';
       });
       window.addEventListener('mousemove', e => {
-        if (!isDragging) return;
-        dragOffset = currentOffset + (e.clientX - startX);
-        marqueeTrack.style.transform = `translateX(${dragOffset}px)`;
+        if (!dragging) return;
+        offset = startOffset + (e.clientX - startX);
       });
       window.addEventListener('mouseup', () => {
-        if (!isDragging) return;
-        isDragging = false;
+        dragging = false;
         marqueeStrip.style.cursor = 'grab';
-        resume();
       });
 
       // Touch
       marqueeStrip.addEventListener('touchstart', e => {
+        dragging = true;
         startX = e.touches[0].clientX;
-        currentOffset = dragOffset;
-        pause();
+        startOffset = offset;
       }, { passive: true });
       marqueeStrip.addEventListener('touchmove', e => {
-        dragOffset = currentOffset + (e.touches[0].clientX - startX);
-        marqueeTrack.style.transform = `translateX(${dragOffset}px)`;
+        if (!dragging) return;
+        offset = startOffset + (e.touches[0].clientX - startX);
       }, { passive: true });
-      marqueeStrip.addEventListener('touchend', () => resume());
+      marqueeStrip.addEventListener('touchend', () => { dragging = false; });
     }
 
     // ── MAGNETIC BUTTONS
