@@ -720,21 +720,19 @@
 
     /* ── PROCESS ───────────────────────────────────────────── */
     .process {
-      background: var(--ink);
-      color: var(--canvas);
+      background: var(--canvas);
     }
 
     .process .section-label {
-      color: rgba(247,246,243,0.45);
+      color: var(--secondary);
     }
 
     .process .section-label::before {
-      background: rgba(247,246,243,0.45);
+      background: var(--secondary);
     }
 
     .process-headline {
       font-family: var(--serif);
-      color: var(--canvas);
       font-size: clamp(2.4rem, 4vw, 4.2rem);
       line-height: 1.08;
       letter-spacing: -0.03em;
@@ -749,27 +747,24 @@
     }
 
     .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      border-top: 1px solid rgba(247,246,243,0.12);
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
     }
 
     .process-step {
-      background: transparent;
-      border-left: 1px solid rgba(247,246,243,0.12);
-      padding: 44px 32px;
-      position: relative;
-      overflow: hidden;
+      display: grid;
+      grid-template-columns: 80px 1fr 2fr;
+      align-items: start;
+      gap: 48px;
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
       transition: background 280ms var(--ease-out-expo);
+      position: relative;
     }
 
     .process-step:hover {
-      background: rgba(247,246,243,0.04);
+      background: transparent;
     }
 
     .step-index {
@@ -777,34 +772,30 @@
       font-size: 0.65rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(247,246,243,0.35);
-      margin-bottom: 40px;
+      color: var(--secondary);
+      padding-top: 4px;
     }
 
     .step-num-large {
-      font-family: var(--serif);
-      font-size: 5rem;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      color: rgba(247,246,243,0.05);
-      position: absolute;
-      top: 20px;
-      right: 20px;
+      display: none;
     }
 
     .process-step h3 {
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: var(--canvas);
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
       color: var(--ink);
-      margin-bottom: 12px;
+      margin-bottom: 0;
+      line-height: 1.2;
     }
 
     .process-step p {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       line-height: 1.75;
-      color: rgba(247,246,243,0.5);
+      color: var(--secondary);
+      max-width: 480px;
+      padding-top: 4px;
     }
 
     /* ── WORK ──────────────────────────────────────────────── */
@@ -1250,8 +1241,12 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .process-steps {
-        grid-template-columns: 1fr 1fr;
+      .process-step {
+        grid-template-columns: 60px 1fr;
+        grid-template-rows: auto auto;
+      }
+      .process-step p {
+        grid-column: 2;
       }
 
       .tech-grid {
@@ -1317,8 +1312,12 @@
         grid-template-columns: 1fr;
       }
 
-      .process-steps {
+      .process-step {
         grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .process-step p {
+        grid-column: 1;
       }
 
       .work-bento {
@@ -1557,32 +1556,24 @@
     </h2>
     <div class="process-steps">
       <div class="process-step reveal">
-        <div class="step-num-large">01</div>
-        <div class="step-index">Phase 01</div>
+        <div class="step-index">01</div>
         <h3>Discovery</h3>
-        <p>Stakeholder interviews, competitor analysis, audience mapping, and goal-setting. We align on what success
-          actually looks like before designing anything.</p>
+        <p>Stakeholder interviews, competitor analysis, audience mapping, and goal-setting. We align on what success actually looks like before designing anything.</p>
       </div>
       <div class="process-step reveal" data-delay="1">
-        <div class="step-num-large">02</div>
-        <div class="step-index">Phase 02</div>
+        <div class="step-index">02</div>
         <h3>Design</h3>
-        <p>Wireframes to high-fidelity in Figma. We prototype interactions, validate with users, and iterate until the
-          design earns approval from both instinct and data.</p>
+        <p>Wireframes to high-fidelity in Figma. We prototype interactions, validate with users, and iterate until the design earns approval from both instinct and data.</p>
       </div>
       <div class="process-step reveal" data-delay="2">
-        <div class="step-num-large">03</div>
-        <div class="step-index">Phase 03</div>
+        <div class="step-index">03</div>
         <h3>Build</h3>
-        <p>Component-driven development in React and Next.js. Semantic HTML, Lighthouse 95+, and a CMS your editors will
-          thank you for.</p>
+        <p>Component-driven development in React and Next.js. Semantic HTML, Lighthouse 95+, and a CMS your editors will thank you for.</p>
       </div>
       <div class="process-step reveal" data-delay="3">
-        <div class="step-num-large">04</div>
-        <div class="step-index">Phase 04</div>
+        <div class="step-index">04</div>
         <h3>Launch &amp; Learn</h3>
-        <p>Staged rollout, QA across devices, analytics validation, and 60 days of support. Then we watch, measure, and
-          improve from real data.</p>
+        <p>Staged rollout, QA across devices, analytics validation, and 60 days of support. Then we watch, measure, and improve from real data.</p>
       </div>
     </div>
   </section>
