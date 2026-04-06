@@ -1252,28 +1252,25 @@
 
     @media (max-width: 768px) {
       nav {
-        padding: 20px 24px;
+        padding: 16px 20px;
         grid-template-columns: 1fr auto;
       }
-
-      nav .nav-logo { grid-column: 1; }
+      nav .nav-logo { grid-column: 1; font-size: 1rem; }
       .nav-links { display: none; }
       .nav-cta { display: none; }
       .nav-hamburger { display: flex; grid-column: 2; }
 
       section {
-        padding: 80px 24px;
+        padding: 60px 20px;
       }
 
-      /* Hero — keep full-bleed scroll scrub on mobile */
-      .hero {
-        height: 300vh;
-      }
+      /* Hero */
+      .hero { height: 300vh; }
       .hero-sticky {
         position: sticky;
         top: 0;
         height: 100vh;
-        padding: 100px 24px 60px;
+        padding: 80px 20px 40px;
       }
       .hero-video {
         position: absolute;
@@ -1285,55 +1282,58 @@
         margin: 0;
       }
       .hero-mask { display: block; }
-
-      .hero-headline {
-        font-size: clamp(2.4rem, 8vw, 4rem);
-      }
-
+      .hero-headline { font-size: clamp(2rem, 7vw, 3rem); }
+      .hero-body { font-size: 0.85rem; }
+      .hero-tag { font-size: 0.62rem; margin-bottom: 24px; }
       .hero-stats-bar {
         grid-template-columns: repeat(2, 1fr);
         max-width: 100%;
+        gap: 1px;
       }
+      .stat-num { font-size: 1.1rem; }
+      .stat-label { font-size: 0.65rem; }
 
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
+      /* Section labels & headlines */
+      .section-label { font-size: 0.62rem; }
 
+      /* Services */
+      .services-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
+      .service-card { padding: 28px 20px; }
+      .service-card h3 { font-size: 0.85rem; }
+      .service-card p { font-size: 0.78rem; }
+
+      /* Process */
       .process-step {
-        grid-template-columns: 40px 1fr;
-        gap: 24px;
+        grid-template-columns: 36px 1fr 1.5fr;
+        gap: 16px;
+        padding: 32px 0;
       }
-      .process-step p {
-        grid-column: 2;
-      }
-      .process-step h3 {
-        font-size: 1.3rem;
-      }
+      .process-step h3 { font-size: 1rem; }
+      .process-step p { font-size: 0.8rem; }
+      .step-index { font-size: 0.6rem; }
 
-      .work-bento {
-        grid-template-columns: 1fr;
-      }
+      /* Why us */
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .why-card { padding: 28px 20px; }
+      .why-card-num { font-size: 2rem; }
+      .why-card h3 { font-size: 0.8rem; }
+      .why-card p { font-size: 0.78rem; }
 
-      .work-card:nth-child(1) {
-        grid-row: auto;
-      }
+      /* Tech */
+      .tech-grid { grid-template-columns: repeat(3, 1fr); }
+      .tech-cell { padding: 20px 12px; }
+      .tech-name { font-size: 0.72rem; }
 
-      .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      /* CTA */
+      .cta-headline { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+      .cta-actions { flex-direction: row; flex-wrap: wrap; gap: 12px; }
 
-      .footer {
-        grid-template-columns: 1fr;
-      }
+      /* Footer */
+      .footer { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 12px; }
 
-      .footer-bottom {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .cta-actions {
-        flex-direction: column;
-      }
+      .work-bento { grid-template-columns: 1fr; }
+      .work-card:nth-child(1) { grid-row: auto; }
     }
   </style>
 </head>
