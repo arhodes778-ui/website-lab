@@ -1254,7 +1254,7 @@
       .nav-hamburger { display: flex; grid-column: 2; }
 
       section {
-        padding: 60px 20px;
+        padding: 40px 20px;
       }
 
       /* Hero */
@@ -1278,8 +1278,10 @@
       .hero-mask {
         display: block;
         background:
-          linear-gradient(to bottom, var(--canvas) 0%, transparent 18%),
-          linear-gradient(to top, var(--canvas) 0%, transparent 18%);
+          linear-gradient(to bottom, var(--canvas) 0%, transparent 30%),
+          linear-gradient(to top, var(--canvas) 0%, transparent 30%),
+          linear-gradient(to right, var(--canvas) 0%, transparent 12%),
+          linear-gradient(to left, var(--canvas) 0%, transparent 12%);
       }
       .hero-headline { font-size: clamp(2rem, 7vw, 3rem); margin-bottom: 12px; }
       .hero-body { font-size: 0.85rem; margin-bottom: 16px; }
@@ -1292,39 +1294,44 @@
 
       /* Services */
       .services-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
-      .service-card { padding: 28px 20px; }
-      .service-card h3 { font-size: 0.85rem; }
-      .service-card p { font-size: 0.78rem; }
+      .service-card { padding: 20px 16px; }
+      .service-card h3 { font-size: 0.82rem; }
+      .service-card p { font-size: 0.75rem; }
 
       /* Process */
       .process-step {
         grid-template-columns: 36px 1fr 1.5fr;
         gap: 16px;
-        padding: 32px 0;
+        padding: 22px 0;
       }
-      .process-step h3 { font-size: 1rem; }
-      .process-step p { font-size: 0.8rem; }
+      .process-step h3 { font-size: 0.95rem; }
+      .process-step p { font-size: 0.78rem; }
       .step-index { font-size: 0.6rem; }
+      .process-headline { margin-bottom: 32px; }
 
       /* Why us */
+      .why-us { padding: 40px 20px; }
       .why-grid { grid-template-columns: 1fr 1fr; }
-      .why-card { padding: 28px 20px; }
-      .why-card-num { font-size: 2rem; }
-      .why-card h3 { font-size: 0.8rem; }
-      .why-card p { font-size: 0.78rem; }
+      .why-card { padding: 20px 16px; }
+      .why-card-num { font-size: 1.8rem; }
+      .why-card h3 { font-size: 0.78rem; }
+      .why-card p { font-size: 0.75rem; }
+      .why-us-headline { font-size: clamp(1.6rem, 5vw, 2rem); margin-bottom: 8px; }
+      .why-us-sub { font-size: 0.82rem; margin-bottom: 32px; }
 
       /* Tech */
       .tech-grid { grid-template-columns: repeat(3, 1fr); }
-      .tech-cell { padding: 20px 12px; }
-      .tech-name { font-size: 0.72rem; }
+      .tech-cell { padding: 16px 10px; }
+      .tech-name { font-size: 0.68rem; }
 
       /* CTA */
-      .cta-headline { font-size: clamp(1.8rem, 6vw, 2.4rem); }
-      .cta-actions { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+      .cta-section { padding: 40px 20px; }
+      .cta-headline { font-size: clamp(1.6rem, 5vw, 2rem); }
+      .cta-actions { flex-direction: row; flex-wrap: wrap; gap: 10px; }
 
       /* Footer */
-      .footer { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .footer-bottom { flex-direction: column; gap: 12px; }
+      .footer { grid-template-columns: 1fr 1fr; gap: 28px; padding: 40px 20px; }
+      .footer-bottom { flex-direction: column; gap: 10px; }
 
       .work-bento { grid-template-columns: 1fr; }
       .work-card:nth-child(1) { grid-row: auto; }
