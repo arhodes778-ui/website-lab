@@ -502,7 +502,7 @@
 
     /* ── MARQUEE ───────────────────────────────────────────── */
     .marquee-strip {
-      cursor: grab;
+      cursor: default;
       user-select: none;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
@@ -1903,7 +1903,6 @@
         dragging = true;
         startX = e.clientX;
         startOffset = offset;
-        marqueeStrip.style.cursor = 'grabbing';
       });
       window.addEventListener('mousemove', e => {
         if (!dragging) return;
@@ -1911,7 +1910,6 @@
       });
       window.addEventListener('mouseup', () => {
         dragging = false;
-        marqueeStrip.style.cursor = 'grab';
       });
 
       // Touch
