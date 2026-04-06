@@ -720,19 +720,21 @@
 
     /* ── PROCESS ───────────────────────────────────────────── */
     .process {
-      background: var(--canvas);
+      background: var(--ink);
+      color: var(--canvas);
     }
 
     .process .section-label {
-      color: var(--secondary);
+      color: rgba(247,246,243,0.45);
     }
 
     .process .section-label::before {
-      background: var(--secondary);
+      background: rgba(247,246,243,0.45);
     }
 
     .process-headline {
       font-family: var(--serif);
+      color: var(--canvas);
       font-size: clamp(2.4rem, 4vw, 4.2rem);
       line-height: 1.08;
       letter-spacing: -0.03em;
@@ -750,6 +752,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1px;
+      border-top: 1px solid rgba(247,246,243,0.12);
       background: var(--border);
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -757,7 +760,8 @@
     }
 
     .process-step {
-      background: var(--surface);
+      background: transparent;
+      border-left: 1px solid rgba(247,246,243,0.12);
       padding: 44px 32px;
       position: relative;
       overflow: hidden;
@@ -765,7 +769,7 @@
     }
 
     .process-step:hover {
-      background: var(--accent-pale);
+      background: rgba(247,246,243,0.04);
     }
 
     .step-index {
@@ -773,7 +777,7 @@
       font-size: 0.65rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--secondary);
+      color: rgba(247,246,243,0.35);
       margin-bottom: 40px;
     }
 
@@ -782,7 +786,7 @@
       font-size: 5rem;
       line-height: 1;
       letter-spacing: -0.04em;
-      color: rgba(17, 17, 17, 0.04);
+      color: rgba(247,246,243,0.05);
       position: absolute;
       top: 20px;
       right: 20px;
@@ -792,6 +796,7 @@
       font-size: 1rem;
       font-weight: 500;
       letter-spacing: -0.01em;
+      color: var(--canvas);
       color: var(--ink);
       margin-bottom: 12px;
     }
@@ -799,7 +804,7 @@
     .process-step p {
       font-size: 0.85rem;
       line-height: 1.75;
-      color: var(--secondary);
+      color: rgba(247,246,243,0.5);
     }
 
     /* ── WORK ──────────────────────────────────────────────── */
@@ -1452,54 +1457,6 @@
     </div>
   </div>
 
-  <!-- APPROACH -->
-  <div class="approach">
-    <div class="approach-left">
-      <div class="section-label reveal">Our philosophy</div>
-      <h2 class="approach-headline reveal" data-delay="1">
-        We build websites<br>that <em>earn</em> their place
-      </h2>
-      <p class="approach-body reveal" data-delay="2">
-        Most websites fail quietly — they load, they sit there, they do nothing. We design for the opposite: sites where
-        every section has a purpose, every interaction builds trust, and the path from visitor to client is clear.
-      </p>
-    </div>
-    <div class="approach-right">
-      <ul class="principle-list">
-        <li class="principle-item reveal">
-          <span class="principle-num">01</span>
-          <div class="principle-content">
-            <h3>Strategy before pixels</h3>
-            <p>We map your audience, goals, and competitive landscape before a single frame is drawn. Design decisions
-              emerge from that clarity.</p>
-          </div>
-        </li>
-        <li class="principle-item reveal" data-delay="1">
-          <span class="principle-num">02</span>
-          <div class="principle-content">
-            <h3>Typography as architecture</h3>
-            <p>Hierarchy, rhythm, and proportion — the invisible structure that makes complex information feel
-              effortless to read.</p>
-          </div>
-        </li>
-        <li class="principle-item reveal" data-delay="2">
-          <span class="principle-num">03</span>
-          <div class="principle-content">
-            <h3>Motion with meaning</h3>
-            <p>Animations that guide attention and reward curiosity — never gratuitous, always in service of
-              comprehension.</p>
-          </div>
-        </li>
-        <li class="principle-item reveal" data-delay="3">
-          <span class="principle-num">04</span>
-          <div class="principle-content">
-            <h3>Code that scales</h3>
-            <p>Clean, documented, maintainable — your team can extend it on day 200 as easily as day one.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
 
   <!-- SERVICES -->
   <section class="services" id="services">
