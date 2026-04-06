@@ -1347,7 +1347,7 @@
   <!-- HERO -->
   <section class="hero">
     <!-- Video background -->
-    <video class="hero-video" autoplay muted playsinline id="heroVideo">
+    <video class="hero-video" muted playsinline preload="auto" id="heroVideo">
       <source src="Website 1.mp4" type="video/mp4" />
     </video>
     <!-- Inward masking gradient -->
@@ -1862,32 +1862,39 @@
 
   <script>
 
-    // ── HERO VIDEO — play on enter, fade out on end, replay on re-enter
+    // ── HERO VIDEO — scroll-scrub: forward on scroll down, reverse on scroll up
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
-      // Fade in once video is ready
+      heroVideo.pause();
+      heroVideo.currentTime = 0;
+
       heroVideo.addEventListener('canplay', () => {
         heroVideo.style.opacity = '1';
       });
 
-      // Fade the video out to canvas colour when it finishes
-      heroVideo.addEventListener('ended', () => {
-        heroVideo.style.transition = 'opacity 800ms cubic-bezier(0.16,1,0.3,1)';
-        heroVideo.style.opacity = '0';
-      });
+      const heroSection = document.querySelector('.hero');
+      let rafId = null;
+      let targetTime = 0;
 
-      // Replay + reset opacity each time the hero scrolls back into view
-      const heroObs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            heroVideo.currentTime = 0;
-            heroVideo.play();
-            heroVideo.style.transition = 'opacity 1000ms cubic-bezier(0.16,1,0.3,1)';
-            heroVideo.style.opacity = '1';
-          }
-        });
-      }, { threshold: 0.2 });
-      heroObs.observe(document.querySelector('.hero'));
+      function scrubVideo() {
+        const rect = heroSection.getBoundingClientRect();
+        const heroHeight = heroSection.offsetHeight;
+        // progress: 0 when hero top is at viewport bottom, 1 when hero top is at viewport top
+        const progress = Math.min(1, Math.max(0, -rect.top / (heroHeight * 0.6)));
+        const duration = heroVideo.duration || 1;
+        targetTime = progress * duration;
+
+        if (Math.abs(heroVideo.currentTime - targetTime) > 0.01) {
+          heroVideo.currentTime += (targetTime - heroVideo.currentTime) * 0.12;
+          rafId = requestAnimationFrame(scrubVideo);
+        } else {
+          rafId = null;
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!rafId) rafId = requestAnimationFrame(scrubVideo);
+      }, { passive: true });
     }
 
     // ── MOBILE MENU
