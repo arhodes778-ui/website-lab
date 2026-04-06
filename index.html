@@ -502,6 +502,8 @@
 
     /* ── MARQUEE ───────────────────────────────────────────── */
     .marquee-strip {
+      cursor: grab;
+      user-select: none;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       padding: 18px 0;
@@ -1873,6 +1875,50 @@
     }, { threshold: 0.12 });
 
     reveals.forEach(el => io.observe(el));
+
+    // ── MARQUEE DRAG
+    const marqueeStrip = document.querySelector('.marquee-strip');
+    const marqueeTrack = document.querySelector('.marquee-track');
+    if (marqueeStrip && marqueeTrack) {
+      let isDragging = false;
+      let startX = 0;
+      let dragOffset = 0;
+      let currentOffset = 0;
+
+      const pause = () => marqueeTrack.style.animationPlayState = 'paused';
+      const resume = () => marqueeTrack.style.animationPlayState = 'running';
+
+      marqueeStrip.addEventListener('mousedown', e => {
+        isDragging = true;
+        startX = e.clientX;
+        currentOffset = dragOffset;
+        pause();
+        marqueeStrip.style.cursor = 'grabbing';
+      });
+      window.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        dragOffset = currentOffset + (e.clientX - startX);
+        marqueeTrack.style.transform = `translateX(${dragOffset}px)`;
+      });
+      window.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        marqueeStrip.style.cursor = 'grab';
+        resume();
+      });
+
+      // Touch
+      marqueeStrip.addEventListener('touchstart', e => {
+        startX = e.touches[0].clientX;
+        currentOffset = dragOffset;
+        pause();
+      }, { passive: true });
+      marqueeStrip.addEventListener('touchmove', e => {
+        dragOffset = currentOffset + (e.touches[0].clientX - startX);
+        marqueeTrack.style.transform = `translateX(${dragOffset}px)`;
+      }, { passive: true });
+      marqueeStrip.addEventListener('touchend', () => resume());
+    }
 
     // ── MAGNETIC BUTTONS
     document.querySelectorAll('.btn-primary, .btn-cta-primary, .nav-cta').forEach(btn => {
