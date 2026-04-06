@@ -150,16 +150,11 @@
     }
 
     .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
       text-decoration: none;
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-logo img {
-      height: 36px;
-      width: auto;
-      filter: invert(1);
-      mix-blend-mode: multiply;
     }
 
     .nav-links {
@@ -1329,9 +1324,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
-      <img src="Aistrion Logo.png" alt="Aistrion" />
-    </a>
+    <a href="#" class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Aistrion</a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
