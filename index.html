@@ -1804,12 +1804,26 @@
     // ── HERO VIDEO — scroll-scrub tied to 300vh hero section
     const heroVideo = document.getElementById('heroVideo');
     if (heroVideo) {
-      heroVideo.pause();
       heroVideo.currentTime = 0;
 
-      heroVideo.addEventListener('canplay', () => {
-        heroVideo.style.opacity = '1';
-      });
+      // Show video as soon as it has any data
+      const showVideo = () => { heroVideo.style.opacity = '1'; };
+      heroVideo.addEventListener('canplay', showVideo);
+      heroVideo.addEventListener('loadeddata', showVideo);
+
+      // iOS requires a play() call before currentTime scrubbing renders frames
+      // Trigger on first user interaction
+      let iosUnlocked = false;
+      const unlockVideo = () => {
+        if (iosUnlocked) return;
+        iosUnlocked = true;
+        heroVideo.play().then(() => {
+          heroVideo.pause();
+          heroVideo.style.opacity = '1';
+        }).catch(() => {});
+      };
+      document.addEventListener('touchstart', unlockVideo, { once: true });
+      document.addEventListener('click', unlockVideo, { once: true });
 
       const heroSection = document.querySelector('.hero');
       let rafId = null;
