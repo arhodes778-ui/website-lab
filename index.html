@@ -1894,9 +1894,7 @@
         const scrubDistance = heroSection.offsetHeight - window.innerHeight;
         const progress = Math.min(1, Math.max(0, (scrollTop - heroTop) / scrubDistance));
         const duration = heroVideo.duration || 1;
-        const targetTime = progress * duration;
-
-        heroVideo.currentTime += (targetTime - heroVideo.currentTime) * 0.15;
+        heroVideo.currentTime = progress * duration;
         rafId = null;
       }
 
