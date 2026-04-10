@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Small Business Website Checklist: 12 Things Your Site Needs | Aistrion Blog</title>
+  <meta name="description" content="From meta tags to mobile responsiveness, these are the twelve non-negotiables we check before any Aistrion site goes live — and why each one matters." />
+  <meta name="author" content="Aistrion" />
+  <link rel="canonical" href="https://aistrion.com/blog-website-checklist.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aistrion.com/blog-website-checklist.html" />
+  <meta property="og:title" content="The Small Business Website Checklist: 12 Things Your Site Needs Before You Launch" />
+  <meta property="og:description" content="From meta tags to mobile responsiveness, these are the twelve non-negotiables we check before any site goes live." />
+  <meta property="og:image" content="https://aistrion.com/og-image.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The Small Business Website Checklist: 12 Things Your Site Needs Before You Launch",
+    "author": { "@type": "Organization", "name": "Aistrion" },
+    "publisher": { "@type": "Organization", "name": "Aistrion", "url": "https://aistrion.com" },
+    "datePublished": "2026-04-10",
+    "description": "From meta tags to mobile responsiveness, these are the twelve non-negotiables we check before any Aistrion site goes live."
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --canvas: #F7F6F3; --surface: #FFFFFF; --ink: #111111;
+      --secondary: #787774; --border: #EAEAEA;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Geist', system-ui, sans-serif;
+      --mono: 'Geist Mono', monospace;
+    }
+    html { background: var(--canvas); color: var(--ink); font-family: var(--sans); }
+    body { min-height: 100vh; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px;
+      background: rgba(247,246,243,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+    .nav-back { font-size: 0.78rem; font-weight: 500; color: var(--secondary); text-decoration: none; letter-spacing: 0.04em; transition: color 200ms; }
+    .nav-back:hover { color: var(--ink); }
+    .article-wrap { max-width: 720px; margin: 0 auto; padding: 140px 32px 120px; }
+    .article-tag {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--secondary);
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 32px;
+    }
+    .article-tag::before { content: ''; width: 24px; height: 1px; background: var(--secondary); }
+    h1 { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.1; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 24px; }
+    .article-meta { font-size: 0.82rem; color: var(--secondary); margin-bottom: 64px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+    .article-body h2 { font-family: var(--serif); font-size: 1.7rem; letter-spacing: -0.02em; color: var(--ink); margin: 56px 0 20px; line-height: 1.2; }
+    .article-body p { font-size: 1.02rem; line-height: 1.85; color: #333; margin-bottom: 20px; }
+    .article-body strong { color: var(--ink); font-weight: 600; }
+    .checklist { list-style: none; margin: 0 0 32px; display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .checklist-item { background: var(--surface); padding: 24px 28px; display: grid; grid-template-columns: 40px 1fr; gap: 16px; align-items: start; }
+    .check-num { font-family: var(--mono); font-size: 0.7rem; color: var(--secondary); letter-spacing: 0.08em; padding-top: 3px; }
+    .check-title { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+    .check-body { font-size: 0.85rem; line-height: 1.7; color: var(--secondary); }
+    .callout { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--ink); border-radius: 6px; padding: 24px 28px; margin: 32px 0; }
+    .callout p { margin: 0; font-size: 0.95rem; color: var(--secondary); }
+    .callout strong { color: var(--ink); }
+    .article-cta { margin-top: 80px; padding: 48px; background: var(--ink); border-radius: 12px; text-align: center; }
+    .article-cta h2 { font-family: var(--serif); font-size: 1.8rem; color: var(--canvas); margin-bottom: 12px; }
+    .article-cta p { font-size: 0.92rem; color: rgba(247,246,243,0.6); margin-bottom: 28px; }
+    .article-cta a { display: inline-flex; align-items: center; gap: 8px; background: var(--canvas); color: var(--ink); font-size: 0.85rem; font-weight: 500; padding: 14px 28px; border-radius: 6px; text-decoration: none; }
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .article-wrap { padding: 100px 20px 80px; }
+      .checklist-item { grid-template-columns: 1fr; gap: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Aistrion</a>
+    <a href="/#blog" class="nav-back">← Back to blog</a>
+  </nav>
+
+  <article class="article-wrap">
+    <div class="article-tag">Strategy</div>
+    <h1>The small business website checklist: 12 things your site needs before you launch</h1>
+    <p class="article-meta">By Aistrion &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 7 min read</p>
+
+    <div class="article-body">
+
+      <p>Launching a website without a proper checklist is like opening a shop without checking whether the sign is readable, the door unlocks, and the lights work. You might get away with it — or you might spend months wondering why nobody's coming in.</p>
+
+      <p>At Aistrion, every site we ship goes through a thorough pre-launch review. These are the twelve things we check without exception — and the reason each one matters to your business.</p>
+
+      <h2>The checklist</h2>
+
+      <ul class="checklist">
+        <li class="checklist-item">
+          <div class="check-num">01</div>
+          <div>
+            <div class="check-title">A clear, keyword-rich page title</div>
+            <div class="check-body">Your page title is the single most important on-page SEO element. It appears in the browser tab, in Google's search results, and when your link is shared on social media. It should describe what you do and who you serve — not just your business name.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">02</div>
+          <div>
+            <div class="check-title">A compelling meta description</div>
+            <div class="check-body">The meta description is the snippet of text that appears below your title in Google. While it doesn't directly affect rankings, a well-written description significantly improves click-through rate — which does affect rankings. Keep it under 160 characters and include a call to action.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">03</div>
+          <div>
+            <div class="check-title">One clear H1 heading</div>
+            <div class="check-body">Every page should have exactly one H1 — the primary heading that tells both Google and visitors what the page is about. It should be the first thing a visitor reads and should naturally include your main keyword.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">04</div>
+          <div>
+            <div class="check-title">Mobile responsiveness</div>
+            <div class="check-body">Over 60% of web traffic is now on mobile devices. Google uses mobile-first indexing, meaning it crawls and ranks your mobile version first. If your site breaks on a phone, you're losing both rankings and customers.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">05</div>
+          <div>
+            <div class="check-title">Page speed under 3 seconds</div>
+            <div class="check-body">53% of mobile visitors leave a site that takes more than 3 seconds to load. Use PageSpeed Insights to check your score and fix the top issues — usually large unoptimised images or render-blocking scripts.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">06</div>
+          <div>
+            <div class="check-title">SSL certificate (HTTPS)</div>
+            <div class="check-body">If your site still shows "Not Secure" in the address bar, visitors and Google both distrust it. An SSL certificate is free with most hosting providers. There is no reason not to have one — and several good reasons to get it immediately.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">07</div>
+          <div>
+            <div class="check-title">A working contact method</div>
+            <div class="check-body">This sounds obvious, but a surprising number of sites have broken contact forms, incorrect email addresses, or phone numbers that go nowhere. Test every contact method yourself before launch — from a different device and browser.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">08</div>
+          <div>
+            <div class="check-title">Optimised images</div>
+            <div class="check-body">Images are typically the largest files on any web page and the biggest culprit for slow load times. Every image should be compressed, sized correctly (don't use a 4000px wide image in a 600px column), and ideally served in WebP format.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">09</div>
+          <div>
+            <div class="check-title">A sitemap submitted to Google</div>
+            <div class="check-body">A sitemap tells Google which pages you have and how to find them. Without one, Google may take months to discover all your pages — or miss some entirely. Create a sitemap.xml file and submit it through Google Search Console.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">10</div>
+          <div>
+            <div class="check-title">Analytics tracking</div>
+            <div class="check-body">If you don't have analytics installed, you're flying blind. You won't know where visitors come from, which pages they read, or where they drop off. Google Analytics 4 is free and takes 15 minutes to set up properly.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">11</div>
+          <div>
+            <div class="check-title">Open Graph tags for social sharing</div>
+            <div class="check-body">When someone shares your link on LinkedIn, WhatsApp, or Slack, Open Graph tags control the title, description, and image that appear. Without them, the preview looks broken or pulls random content. A few lines of code in your page head fixes this entirely.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="check-num">12</div>
+          <div>
+            <div class="check-title">A clear call to action on every page</div>
+            <div class="check-body">Every page your visitor lands on should tell them what to do next. Book a call, get a quote, view your services — whatever the next step is, make it visible, compelling, and easy to click. A site without a clear CTA is a site that doesn't convert.</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>The honest truth:</strong> most websites we audit are missing at least four or five of these. The good news is that many of them are quick fixes. The bad news is that each missing item is quietly costing you traffic and customers every day.</p>
+      </div>
+
+      <h2>What happens when you get all twelve right</h2>
+
+      <p>When every item on this checklist is in order, something changes. Your site starts to feel like a proper business asset rather than a digital placeholder. Google begins to understand and trust it. Visitors arrive, find what they need quickly, and are guided toward contacting you. The site does work.</p>
+
+      <p>That's what we mean at Aistrion when we talk about websites that earn their place. Not decorative — functional. Not just present — performing.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <h2>Want us to audit your current site?</h2>
+      <p>We'll check every item on this list and tell you exactly what needs fixing — free, no commitment.</p>
+      <a href="/#contact">Book a free audit →</a>
+    </div>
+
+  </article>
+
+</body>
+</html>

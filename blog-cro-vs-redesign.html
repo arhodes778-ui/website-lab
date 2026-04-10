@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conversion Rate Optimisation vs. Redesign: Which Does Your Site Need? | Aistrion Blog</title>
+  <meta name="description" content="A full redesign isn't always the answer. Learn how to diagnose whether your site has a design problem, a copy problem, or a trust problem — and act accordingly." />
+  <meta name="author" content="Aistrion" />
+  <link rel="canonical" href="https://aistrion.com/blog-cro-vs-redesign.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aistrion.com/blog-cro-vs-redesign.html" />
+  <meta property="og:title" content="Conversion Rate Optimisation vs. Redesign: Which Does Your Site Need?" />
+  <meta property="og:description" content="A full redesign isn't always the answer. Learn how to diagnose whether your site has a design, copy, or trust problem." />
+  <meta property="og:image" content="https://aistrion.com/og-image.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Conversion Rate Optimisation vs. Redesign: Which One Does Your Site Actually Need?",
+    "author": { "@type": "Organization", "name": "Aistrion" },
+    "publisher": { "@type": "Organization", "name": "Aistrion", "url": "https://aistrion.com" },
+    "datePublished": "2026-04-10",
+    "description": "A full redesign isn't always the answer. We explain how to diagnose whether your site has a design problem, a copy problem, or a trust problem — and act accordingly."
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --canvas: #F7F6F3; --surface: #FFFFFF; --ink: #111111;
+      --secondary: #787774; --border: #EAEAEA;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Geist', system-ui, sans-serif;
+      --mono: 'Geist Mono', monospace;
+    }
+    html { background: var(--canvas); color: var(--ink); font-family: var(--sans); }
+    body { min-height: 100vh; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px;
+      background: rgba(247,246,243,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+    .nav-back { font-size: 0.78rem; font-weight: 500; color: var(--secondary); text-decoration: none; letter-spacing: 0.04em; transition: color 200ms; }
+    .nav-back:hover { color: var(--ink); }
+    .article-wrap { max-width: 720px; margin: 0 auto; padding: 140px 32px 120px; }
+    .article-tag {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--secondary);
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 32px;
+    }
+    .article-tag::before { content: ''; width: 24px; height: 1px; background: var(--secondary); }
+    h1 { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.1; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 24px; }
+    .article-meta { font-size: 0.82rem; color: var(--secondary); margin-bottom: 64px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+    .article-body h2 { font-family: var(--serif); font-size: 1.7rem; letter-spacing: -0.02em; color: var(--ink); margin: 56px 0 20px; line-height: 1.2; }
+    .article-body h3 { font-family: var(--sans); font-size: 1rem; font-weight: 600; color: var(--ink); margin: 36px 0 12px; }
+    .article-body p { font-size: 1.02rem; line-height: 1.85; color: #333; margin-bottom: 20px; }
+    .article-body strong { color: var(--ink); font-weight: 600; }
+    .article-body ul { margin: 0 0 20px 24px; }
+    .article-body ul li { font-size: 1.02rem; line-height: 1.85; color: #333; margin-bottom: 8px; }
+    .callout { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--ink); border-radius: 6px; padding: 24px 28px; margin: 32px 0; }
+    .callout p { margin: 0; font-size: 0.95rem; color: var(--secondary); }
+    .callout strong { color: var(--ink); }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 32px 0; }
+    .compare-cell { background: var(--surface); padding: 32px 28px; }
+    .compare-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--secondary); margin-bottom: 16px; }
+    .compare-title { font-family: var(--serif); font-size: 1.3rem; color: var(--ink); margin-bottom: 12px; }
+    .compare-cell ul { margin: 0 0 0 18px; }
+    .compare-cell ul li { font-size: 0.88rem; line-height: 1.75; color: var(--secondary); margin-bottom: 6px; }
+    .article-cta { margin-top: 80px; padding: 48px; background: var(--ink); border-radius: 12px; text-align: center; }
+    .article-cta h2 { font-family: var(--serif); font-size: 1.8rem; color: var(--canvas); margin-bottom: 12px; }
+    .article-cta p { font-size: 0.92rem; color: rgba(247,246,243,0.6); margin-bottom: 28px; }
+    .article-cta a { display: inline-flex; align-items: center; gap: 8px; background: var(--canvas); color: var(--ink); font-size: 0.85rem; font-weight: 500; padding: 14px 28px; border-radius: 6px; text-decoration: none; }
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .article-wrap { padding: 100px 20px 80px; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">Aistrion</a>
+    <a href="/#blog" class="nav-back">← Back to blog</a>
+  </nav>
+
+  <article class="article-wrap">
+    <div class="article-tag">Design</div>
+    <h1>Conversion rate optimisation vs. redesign: which one does your site actually need?</h1>
+    <p class="article-meta">By Aistrion &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; 6 min read</p>
+
+    <div class="article-body">
+
+      <p>When a website isn't performing — when visitors arrive but don't enquire, when traffic is decent but leads are thin — the instinct is usually to rebuild it. Start fresh. New look, new layout, new everything.</p>
+
+      <p>Sometimes that's right. Often it isn't. A full redesign is expensive, time-consuming, and disruptive. Before committing to one, it's worth asking a more precise question: <strong>what type of problem does this site actually have?</strong></p>
+
+      <p>In our experience, underperforming websites suffer from one of three distinct problems — and each one calls for a different solution.</p>
+
+      <h2>The three problems a failing website can have</h2>
+
+      <h3>Problem 1: A design problem</h3>
+      <p>The site looks outdated, unprofessional, or untrustworthy. Visitors arrive and immediately feel uncertain — the layout is cluttered, the typography is hard to read, or the visual hierarchy is unclear. They can't quickly understand what you do or why they should care.</p>
+      <p><strong>Signs of a design problem:</strong> high bounce rate, very short time on site, visitors leaving from the homepage without scrolling.</p>
+
+      <h3>Problem 2: A copy problem</h3>
+      <p>The site looks fine, but the words don't do the work. The headline is vague. The services page describes what you offer but not what the customer gets. The calls to action are weak or absent. Visitors understand your site aesthetically but don't feel compelled to act.</p>
+      <p><strong>Signs of a copy problem:</strong> visitors scroll through multiple pages but don't convert, low click-through on CTAs, good dwell time but no enquiries.</p>
+
+      <h3>Problem 3: A trust problem</h3>
+      <p>Visitors want what you offer, but something makes them hesitate. There are no reviews, no case studies, no visible proof that you've done this before and done it well. They're not convinced you're the right choice.</p>
+      <p><strong>Signs of a trust problem:</strong> visitors reach your contact page but don't submit, high cart abandonment (for e-commerce), repeat visits without conversion.</p>
+
+      <div class="callout">
+        <p><strong>The most common mistake:</strong> treating a copy or trust problem with a design solution. A beautiful new website with the same vague copy and no social proof will perform just as badly as the old one — it'll just look better doing it.</p>
+      </div>
+
+      <h2>CRO vs. redesign: when to choose each</h2>
+
+      <div class="compare-grid">
+        <div class="compare-cell">
+          <div class="compare-label">Choose this when</div>
+          <div class="compare-title">Conversion Rate Optimisation</div>
+          <ul>
+            <li>The site works on mobile and loads quickly</li>
+            <li>Traffic is adequate but conversion is low</li>
+            <li>You know roughly where visitors drop off</li>
+            <li>The visual design is acceptable</li>
+            <li>You want results without a full rebuild</li>
+          </ul>
+        </div>
+        <div class="compare-cell">
+          <div class="compare-label">Choose this when</div>
+          <div class="compare-title">Full Redesign</div>
+          <ul>
+            <li>The site is not mobile responsive</li>
+            <li>Load times are over 5 seconds</li>
+            <li>The visual design actively undermines trust</li>
+            <li>The site structure is fundamentally unclear</li>
+            <li>Your brand has evolved significantly</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>What CRO actually involves</h2>
+
+      <p>Conversion rate optimisation isn't guesswork — it's a systematic process of identifying friction, forming hypotheses, and testing changes. In practice, it typically involves:</p>
+
+      <ul>
+        <li><strong>Heatmap analysis</strong> — tools like Hotjar show where visitors click, scroll, and stop reading</li>
+        <li><strong>Funnel analysis</strong> — identifying the exact page or step where visitors drop off</li>
+        <li><strong>Copy rewriting</strong> — making headlines more specific, benefits clearer, and CTAs more compelling</li>
+        <li><strong>Trust signal addition</strong> — adding testimonials, logos, case studies, or accreditations</li>
+        <li><strong>A/B testing</strong> — running two versions of a page simultaneously to measure which converts better</li>
+      </ul>
+
+      <p>A focused CRO project can often double conversion rates without touching the underlying design. It's the highest-leverage intervention available for an existing site.</p>
+
+      <h2>When the answer is both</h2>
+
+      <p>Sometimes a site has all three problems simultaneously — poor design, weak copy, and no trust signals. In these cases, a redesign is the right call, but it should be treated as an opportunity to fix the copy and trust issues at the same time. A new design without addressing the underlying conversion problems just resets the clock.</p>
+
+      <p>At Aistrion, every redesign project includes a conversion audit before we write a single line of code. We identify what's causing the underperformance, then design around solving those specific problems — not just making the site look different.</p>
+
+      <h2>How to diagnose your own site</h2>
+
+      <p>If you're unsure which problem you have, start with data. Install Google Analytics 4 if you haven't already, and look at:</p>
+
+      <ul>
+        <li><strong>Bounce rate by page</strong> — which pages are people leaving immediately from?</li>
+        <li><strong>Average engagement time</strong> — are people reading, or just glancing?</li>
+        <li><strong>Conversion paths</strong> — which pages do converting visitors view before they enquire?</li>
+        <li><strong>Device breakdown</strong> — is mobile performance dramatically worse than desktop?</li>
+      </ul>
+
+      <p>Two weeks of data is usually enough to form a clear picture. If you'd like a second pair of eyes, we offer free site audits — we'll review your analytics, identify the problem type, and recommend the right intervention.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <h2>Not sure what your site needs?</h2>
+      <p>We'll audit it for free and tell you exactly what's holding it back — redesign, CRO, or something else entirely.</p>
+      <a href="/#contact">Get a free audit →</a>
+    </div>
+
+  </article>
+
+</body>
+</html>
