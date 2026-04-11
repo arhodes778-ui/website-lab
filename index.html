@@ -1437,6 +1437,7 @@
         height: 100vh;
         padding: 40px 20px 20px;
         background: var(--canvas);
+        overflow: visible;
       }
       .hero-video {
         position: absolute;
@@ -2152,13 +2153,13 @@
         if (window.innerWidth <= 768) {
           const startH = window.innerHeight;
 
-          // End height: video natural height, but no smaller than 58vh so text always fits
+          // End height = exact video frame height (tight to the video)
           const videoAspect = heroVideo.videoWidth ? heroVideo.videoWidth / heroVideo.videoHeight : 16 / 9;
-          const videoNaturalH = heroVideo.videoWidth ? window.innerWidth / videoAspect : startH * 0.65;
-          const endH = Math.max(videoNaturalH, startH * 0.58);
+          const videoNaturalH = window.innerWidth / videoAspect;
+          const endH = videoNaturalH;
           heroSticky.style.height = (startH + (endH - startH) * progress) + 'px';
 
-          // Scale: fill screen at start → 1 (full laptop visible) at end
+          // Scale video: fill screen → full laptop visible
           if (heroVideo.videoWidth) {
             const viewAspect = window.innerWidth / window.innerHeight;
             const startScale = videoAspect > viewAspect
@@ -2168,9 +2169,9 @@
             heroVideo.style.transform = `scale(${scale})`;
           }
 
-          // Text: shrink slightly into centre, stays readable
+          // Text: shrinks to 0.72 and stays centred over the video — still readable
           if (heroContent) {
-            const textScale = 1 - progress * 0.2;
+            const textScale = 1 - progress * 0.28;
             heroContent.style.transform = `scale(${textScale})`;
             heroContent.style.opacity = '1';
           }
