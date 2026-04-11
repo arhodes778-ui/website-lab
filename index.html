@@ -1426,7 +1426,7 @@
       .nav-hamburger { display: flex; grid-column: 2; }
 
       section {
-        padding: 48px 20px;
+        padding: 32px 20px;
       }
 
       /* Hero */
@@ -1466,33 +1466,34 @@
       /* Section labels & headlines */
       .section-label { font-size: 0.62rem; }
 
-      /* Services — single column so cards aren't cramped */
-      .services-grid { grid-template-columns: 1fr; gap: 1px; }
-      .service-card { padding: 24px 20px; }
-      .service-card h3 { font-size: 0.95rem; }
-      .service-card p { font-size: 0.82rem; }
+      /* Services — 2 columns, description hidden to keep cards compact */
+      .services-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
+      .service-card { padding: 20px 16px; }
+      .service-card h3 { font-size: 0.85rem; }
+      .service-card p { display: none; }
+      .service-icon { width: 28px; height: 28px; margin-bottom: 8px; }
 
-      /* Process — stack vertically, number sits above title */
+      /* Process */
       .process-step {
         display: flex;
         flex-direction: column;
-        gap: 6px;
-        padding: 24px 0;
+        gap: 4px;
+        padding: 18px 0;
       }
-      .process-step h3 { font-size: 1rem; }
-      .process-step p { font-size: 0.82rem; line-height: 1.7; margin-top: 4px; }
+      .process-step h3 { font-size: 0.95rem; }
+      .process-step p { font-size: 0.8rem; line-height: 1.65; margin-top: 2px; }
       .step-index { font-size: 0.6rem; margin-bottom: 2px; }
-      .process-headline { margin-bottom: 32px; }
+      .process-headline { margin-bottom: 24px; }
 
       /* Why us */
-      .why-us { padding: 48px 20px; }
+      .why-us { padding: 32px 20px; }
       .why-grid { grid-template-columns: 1fr 1fr; }
-      .why-card { padding: 22px 16px; }
-      .why-card-num { font-size: 2rem; }
-      .why-card h3 { font-size: 0.82rem; }
-      .why-card p { font-size: 0.78rem; }
-      .why-us-headline { font-size: clamp(1.8rem, 6vw, 2.2rem); margin-bottom: 10px; }
-      .why-us-sub { font-size: 0.85rem; margin-bottom: 32px; }
+      .why-card { padding: 18px 14px; }
+      .why-card-num { font-size: 1.8rem; }
+      .why-card h3 { font-size: 0.78rem; }
+      .why-card p { font-size: 0.72rem; }
+      .why-us-headline { font-size: clamp(1.6rem, 6vw, 2rem); margin-bottom: 8px; }
+      .why-us-sub { font-size: 0.82rem; margin-bottom: 24px; }
 
       /* Tech */
       .tech-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1500,7 +1501,6 @@
       .tech-name { font-size: 0.68rem; }
 
       /* Blog — horizontal swipe carousel */
-      .blog-section { overflow: hidden; }
       .blog-grid {
         display: flex;
         overflow-x: auto;
@@ -1524,7 +1524,7 @@
       .blog-headline { font-size: clamp(1.7rem, 6vw, 2.2rem); }
 
       /* CTA */
-      .cta-section { padding: 48px 20px; }
+      .cta-section { padding: 32px 20px; }
       .cta-headline { font-size: clamp(1.8rem, 6vw, 2.2rem); }
       .cta-actions { flex-direction: column; gap: 12px; align-items: stretch; }
       .btn-cta-primary,
