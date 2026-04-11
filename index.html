@@ -2152,12 +2152,10 @@
         if (window.innerWidth <= 768) {
           const startH = window.innerHeight;
 
-          // End height = exact height of video at scale 1 with contain
-          // (video is landscape so it's width-constrained on mobile)
+          // End height: video natural height, but no smaller than 58vh so text always fits
           const videoAspect = heroVideo.videoWidth ? heroVideo.videoWidth / heroVideo.videoHeight : 16 / 9;
-          const endH = heroVideo.videoWidth
-            ? Math.min(startH, window.innerWidth / videoAspect)
-            : startH * 0.65;
+          const videoNaturalH = heroVideo.videoWidth ? window.innerWidth / videoAspect : startH * 0.65;
+          const endH = Math.max(videoNaturalH, startH * 0.58);
           heroSticky.style.height = (startH + (endH - startH) * progress) + 'px';
 
           // Scale: fill screen at start → 1 (full laptop visible) at end
