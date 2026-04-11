@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why Core Web Vitals Affect Your Google Ranking | Aistrion Blog</title>
-  <meta name="description" content="Google's ranking algorithm uses real-world page experience signals. Learn what LCP, CLS, and INP mean for your business website and how to fix them." />
+  <title>Core Web Vitals Explained: LCP, CLS and INP (2026 Guide) | Aistrion</title>
+  <meta name="description" content="What are Core Web Vitals and do they affect SEO? Yes — Google uses LCP, CLS and INP as ranking signals. Here's what they mean and how to fix them fast." />
   <meta name="author" content="Aistrion" />
   <link rel="canonical" href="https://aistrion.com/blog-core-web-vitals.html" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -19,11 +19,45 @@
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Why Your Website's Core Web Vitals Score Directly Affects Your Google Ranking",
+    "headline": "Core Web Vitals Explained: LCP, CLS and INP (2026 Guide)",
     "author": { "@type": "Organization", "name": "Aistrion" },
     "publisher": { "@type": "Organization", "name": "Aistrion", "url": "https://aistrion.com" },
     "datePublished": "2026-04-10",
-    "description": "Google's ranking algorithm uses real-world page experience signals. We break down what LCP, CLS, and INP mean for your traffic and how to fix them."
+    "dateModified": "2026-04-11",
+    "description": "What are Core Web Vitals and do they affect SEO? Google uses LCP, CLS and INP as ranking signals. Here's what they mean and how to fix them."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are Core Web Vitals?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Core Web Vitals are three metrics Google uses to measure real-world page experience: LCP (Largest Contentful Paint) measures loading speed, CLS (Cumulative Layout Shift) measures visual stability, and INP (Interaction to Next Paint) measures responsiveness. Google uses them as ranking signals." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do Core Web Vitals affect Google ranking?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Since the 2021 Page Experience update, Google uses Core Web Vitals as a direct ranking factor. Sites with poor scores can rank lower than competitors with similar content and authority." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a good Core Web Vitals score?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Google considers scores 'good' when LCP is under 2.5 seconds, CLS is under 0.1, and INP is under 200 milliseconds. A Google Lighthouse score of 95 or above generally indicates healthy Core Web Vitals." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I check my Core Web Vitals?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Use Google PageSpeed Insights (pagespeed.web.dev) to get a free report with specific recommendations. Google Search Console also shows real-user Core Web Vitals data for your entire site under the Experience section." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I fix poor Core Web Vitals?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For poor LCP: compress images and convert to WebP, use a CDN, and preload your hero image. For high CLS: add dimensions to all images and preload fonts. For poor INP: remove unused third-party scripts and defer non-critical JavaScript." }
+      }
+    ]
   }
   </script>
 
@@ -112,10 +146,27 @@
     .article-graphic { margin: 0 0 64px; border-radius: 12px; overflow: hidden; }
     .article-graphic img { width: 100%; height: auto; display: block; }
 
+    .article-faq { margin-top: 64px; border-top: 1px solid var(--border); padding-top: 48px; }
+    .article-faq h2 { font-family: var(--serif); font-size: 1.7rem; color: var(--ink); margin-bottom: 32px; letter-spacing: -0.02em; }
+    .faq-item-article { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .faq-item-article:last-child { border-bottom: none; }
+    .faq-item-article h3 { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .faq-item-article p { font-size: 0.9rem; line-height: 1.75; color: var(--secondary); }
+    .faq-item-article a { color: var(--ink); }
+
+    .related-articles { margin-top: 56px; }
+    .related-articles h2 { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--secondary); margin-bottom: 20px; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .related-card { background: var(--surface); padding: 28px 24px; text-decoration: none; display: flex; flex-direction: column; gap: 10px; transition: background 200ms; }
+    .related-card:hover { background: var(--canvas); }
+    .related-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--secondary); }
+    .related-title { font-size: 0.9rem; font-weight: 500; color: var(--ink); line-height: 1.45; }
+
     @media (max-width: 768px) {
       nav { padding: 16px 20px; }
       .article-wrap { padding: 100px 20px 80px; }
       .score-grid { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr; }
     }
   </style>
 
@@ -228,6 +279,44 @@
 
       <p>If your current site is underperforming, we can audit it and identify exactly where the issues lie — or rebuild it properly from scratch. Either way, the result is a site that ranks better, loads faster, and converts more visitors into customers.</p>
 
+    </div>
+
+    <div class="article-faq">
+      <h2>Frequently asked questions</h2>
+
+      <div class="faq-item-article">
+        <h3>Do Core Web Vitals actually affect my Google ranking?</h3>
+        <p>Yes. Since Google's 2021 Page Experience update, LCP, CLS, and INP are direct ranking signals. In competitive niches they can be the deciding factor between page one and page two.</p>
+      </div>
+
+      <div class="faq-item-article">
+        <h3>What is a good Core Web Vitals score?</h3>
+        <p>Google classes scores as "good" when LCP is under 2.5s, CLS is under 0.1, and INP is under 200ms. A Lighthouse score of 95+ generally means all three are healthy.</p>
+      </div>
+
+      <div class="faq-item-article">
+        <h3>How do I check my Core Web Vitals for free?</h3>
+        <p>Go to <a href="https://pagespeed.web.dev" target="_blank" rel="noopener">PageSpeed Insights</a>, paste your URL, and you'll get a full report with specific fixes within seconds. Google Search Console also shows your real-user data under the Experience tab.</p>
+      </div>
+
+      <div class="faq-item-article">
+        <h3>How long does it take to fix Core Web Vitals?</h3>
+        <p>Simple fixes like compressing images and deferring scripts can be done in a day. Structural issues — render-blocking code, third-party scripts, poor server response — may take a week or two to fully resolve.</p>
+      </div>
+    </div>
+
+    <div class="related-articles">
+      <h2>More from Aistrion</h2>
+      <div class="related-grid">
+        <a href="blog-website-checklist.html" class="related-card">
+          <span class="related-tag">Strategy</span>
+          <span class="related-title">The small business website checklist: 12 things your site needs before you launch</span>
+        </a>
+        <a href="blog-cro-vs-redesign.html" class="related-card">
+          <span class="related-tag">Design</span>
+          <span class="related-title">CRO vs. redesign: which one does your site actually need?</span>
+        </a>
+      </div>
     </div>
 
     <div class="article-cta">
