@@ -1450,7 +1450,7 @@
         inset: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         object-position: center;
         border-radius: 0;
         margin: 0;
@@ -2157,28 +2157,12 @@
         const duration = heroVideo.duration || 1;
         heroVideo.currentTime = progress * duration;
 
-        // On mobile: shrink container height so video goes from full-screen to natural size
-        if (window.innerWidth <= 768) {
-          const startH = window.innerHeight;
-          // End height = video's natural height at full screen width (no letterboxing)
-          const videoAspect = (heroVideo.videoWidth && heroVideo.videoHeight)
-            ? heroVideo.videoWidth / heroVideo.videoHeight : 16 / 9;
-          const endH = window.innerWidth / videoAspect;
-          heroSticky.style.height = (startH + (endH - startH) * progress) + 'px';
-
-          // Text: shrinks into centre, stays readable
-          if (heroContent) {
-            const textScale = 1 - progress * 0.28;
-            heroContent.style.transform = `scale(${textScale})`;
-            heroContent.style.opacity = '1';
-          }
-        } else {
-          heroSticky.style.height = '';
-          heroVideo.style.transform = '';
-          if (heroContent) {
-            heroContent.style.transform = '';
-            heroContent.style.opacity = '';
-          }
+        // Reset any previously applied styles
+        heroSticky.style.height = '';
+        heroVideo.style.transform = '';
+        if (heroContent) {
+          heroContent.style.transform = '';
+          heroContent.style.opacity = '';
         }
 
         rafId = null;
