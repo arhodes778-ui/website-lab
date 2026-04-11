@@ -2144,6 +2144,21 @@
         const progress = Math.min(1, Math.max(0, (scrollTop - heroTop) / scrubDistance));
         const duration = heroVideo.duration || 1;
         heroVideo.currentTime = progress * duration;
+
+        // On mobile: zoom out from screen-filling to full laptop visible
+        if (window.innerWidth <= 768 && heroVideo.videoWidth) {
+          const videoAspect = heroVideo.videoWidth / heroVideo.videoHeight;
+          const viewAspect = window.innerWidth / window.innerHeight;
+          // Start scale: just enough to fill the screen (no letterbox bars)
+          const startScale = videoAspect > viewAspect
+            ? (window.innerHeight * videoAspect) / window.innerWidth
+            : window.innerWidth / (window.innerHeight * videoAspect);
+          const scale = startScale + (1 - startScale) * progress;
+          heroVideo.style.transform = `scale(${scale})`;
+        } else {
+          heroVideo.style.transform = '';
+        }
+
         rafId = null;
       }
 
