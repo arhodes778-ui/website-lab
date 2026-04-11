@@ -2166,12 +2166,11 @@
             heroVideo.style.transform = `scale(${scale})`;
           }
 
-          // Text: scale down and fade into the centre of the video
+          // Text: scale down into the centre of the video, no fade
           if (heroContent) {
             const textScale = 1 - progress * 0.55;
-            const textOpacity = 1 - progress * 1.4;
             heroContent.style.transform = `scale(${textScale})`;
-            heroContent.style.opacity = Math.max(0, textOpacity);
+            heroContent.style.opacity = '1';
           }
         } else {
           heroSticky.style.height = '';
