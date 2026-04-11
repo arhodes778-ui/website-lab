@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WordPress vs Custom Website: Which Is Right for Your Business? | Aistrion</title>
+  <meta name="description" content="WordPress or a custom-built website? We compare performance, cost, security and flexibility so you can make the right call for your business." />
+  <meta name="author" content="Aistrion" />
+  <link rel="canonical" href="https://aistrion.com/blog-wordpress-vs-custom.html" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://aistrion.com/blog-wordpress-vs-custom.html" />
+  <meta property="og:title" content="WordPress vs Custom Website: Which Is Right for Your Business?" />
+  <meta property="og:description" content="WordPress powers 43% of the web — but that doesn't mean it's right for you. Here's an honest comparison to help you decide." />
+  <meta property="og:image" content="https://aistrion.com/og-image.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "WordPress vs Custom Website: Which Is Right for Your Business?",
+    "author": { "@type": "Organization", "name": "Aistrion" },
+    "publisher": { "@type": "Organization", "name": "Aistrion", "url": "https://aistrion.com" },
+    "datePublished": "2026-02-27",
+    "dateModified": "2026-02-27",
+    "description": "WordPress or a custom-built website? We compare performance, cost, security and flexibility so you can make the right call for your business."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is WordPress good for business websites?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — WordPress is a solid choice for many businesses, particularly those that need a content-heavy site, have limited budgets, or need to publish frequently. It becomes a poor fit when performance, security or a very specific user experience are top priorities."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a custom website faster than WordPress?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Generally, yes. A custom-built site ships only the code it needs, with no plugin overhead, and can be architected around modern performance techniques from day one. WordPress sites can be made fast, but it requires active effort and ongoing maintenance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much more does a custom website cost than WordPress?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Custom sites cost more upfront — typically starting from £3,000–£5,000 for a small business site versus £800–£2,500 for a managed WordPress build. However, custom sites often have lower ongoing costs because you're not paying for plugin licences, hosting upgrades, or frequent maintenance retainers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is WordPress less secure than a custom website?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WordPress's popularity makes it a frequent target. Core WordPress is well-maintained, but third-party plugins are the main vulnerability. A custom site has a smaller attack surface by default, but security depends on how well the code is written and kept up to date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I switch from WordPress to a custom website later?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Content can usually be migrated from WordPress, though the effort depends on how much you have and how structured it is. It's worth planning your content architecture carefully if you anticipate switching platforms in future."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --canvas: #F7F6F3; --surface: #FFFFFF; --ink: #111111; --secondary: #787774; --border: #EAEAEA; --serif: 'Instrument Serif', Georgia, serif; --sans: 'Geist', system-ui, sans-serif; --mono: 'Geist Mono', monospace; }
+    html { background: var(--canvas); color: var(--ink); font-family: var(--sans); }
+    body { min-height: 100vh; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 24px 48px; background: rgba(247,246,243,0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); text-decoration: none; }
+    .nav-back { font-size: 0.78rem; font-weight: 500; color: var(--secondary); text-decoration: none; letter-spacing: 0.04em; transition: color 200ms; }
+    .nav-back:hover { color: var(--ink); }
+    .article-wrap { max-width: 720px; margin: 0 auto; padding: 140px 32px 120px; }
+    .article-tag { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--secondary); display: inline-flex; align-items: center; gap: 8px; margin-bottom: 32px; }
+    .article-tag::before { content: ''; width: 24px; height: 1px; background: var(--secondary); }
+    h1 { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.1; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 24px; }
+    .article-meta { font-size: 0.82rem; color: var(--secondary); margin-bottom: 64px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+    .article-body h2 { font-family: var(--serif); font-size: 1.7rem; letter-spacing: -0.02em; color: var(--ink); margin: 56px 0 20px; line-height: 1.2; }
+    .article-body h3 { font-family: var(--sans); font-size: 1rem; font-weight: 600; color: var(--ink); margin: 36px 0 12px; }
+    .article-body p { font-size: 1.02rem; line-height: 1.85; color: #333; margin-bottom: 20px; }
+    .article-body strong { color: var(--ink); font-weight: 600; }
+    .article-body ul { margin: 0 0 20px 24px; }
+    .article-body ul li { font-size: 1.02rem; line-height: 1.85; color: #333; margin-bottom: 8px; }
+    .callout { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--ink); border-radius: 6px; padding: 24px 28px; margin: 32px 0; }
+    .callout p { margin: 0; font-size: 0.95rem; color: var(--secondary); }
+    .callout strong { color: var(--ink); }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 32px 0; }
+    .compare-cell { background: var(--surface); padding: 32px 28px; }
+    .compare-label { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--secondary); margin-bottom: 16px; }
+    .compare-title { font-family: var(--serif); font-size: 1.3rem; color: var(--ink); margin-bottom: 12px; }
+    .compare-cell ul { margin: 0 0 0 18px; }
+    .compare-cell ul li { font-size: 0.88rem; line-height: 1.75; color: var(--secondary); margin-bottom: 6px; }
+    .article-faq { margin-top: 64px; border-top: 1px solid var(--border); padding-top: 48px; }
+    .article-faq h2 { font-family: var(--serif); font-size: 1.7rem; color: var(--ink); margin-bottom: 32px; letter-spacing: -0.02em; }
+    .faq-item-article { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .faq-item-article:last-child { border-bottom: none; }
+    .faq-item-article h3 { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .faq-item-article p { font-size: 0.9rem; line-height: 1.75; color: var(--secondary); }
+    .related-articles { margin-top: 56px; }
+    .related-articles h2 { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--secondary); margin-bottom: 20px; }
+    .related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .related-card { background: var(--surface); padding: 28px 24px; text-decoration: none; display: flex; flex-direction: column; gap: 10px; transition: background 200ms; }
+    .related-card:hover { background: var(--canvas); }
+    .related-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--secondary); }
+    .related-title { font-size: 0.9rem; font-weight: 500; color: var(--ink); line-height: 1.45; }
+    .article-cta { margin-top: 80px; padding: 48px; background: var(--ink); border-radius: 12px; text-align: center; }
+    .article-cta h2 { font-family: var(--serif); font-size: 1.8rem; color: var(--canvas); margin-bottom: 12px; }
+    .article-cta p { font-size: 0.92rem; color: rgba(247,246,243,0.6); margin-bottom: 28px; }
+    .article-cta a { display: inline-flex; align-items: center; gap: 8px; background: var(--canvas); color: var(--ink); font-size: 0.85rem; font-weight: 500; padding: 14px 28px; border-radius: 6px; text-decoration: none; }
+    @media (max-width: 768px) { nav { padding: 16px 20px; } .article-wrap { padding: 100px 20px 80px; } .compare-grid { grid-template-columns: 1fr; } .related-grid { grid-template-columns: 1fr; } }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8WTC2VDN44"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8WTC2VDN44');</script>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">Aistrion</a>
+    <a href="/#blog" class="nav-back">← Back to blog</a>
+  </nav>
+
+  <article class="article-wrap">
+    <div class="article-tag">Strategy</div>
+    <h1>WordPress vs custom website: which is right for your business?</h1>
+    <p class="article-meta">By Aistrion &nbsp;·&nbsp; February 2026 &nbsp;·&nbsp; 6 min read</p>
+
+    <div class="article-body">
+
+      <p>WordPress powers roughly 43% of the entire web. That statistic gets quoted constantly — sometimes as proof that it's the obvious choice, sometimes as a warning that you're building on the same platform as millions of spammy blogs. Neither framing is particularly useful. The real question is simpler: <strong>does WordPress fit what you're trying to do, or would a custom build serve you better?</strong></p>
+
+      <p>This article gives you an honest answer. We're a web design agency that builds both, so we have no horse in this race. The right answer depends entirely on your business — and we'll show you how to figure out which way that points.</p>
+
+      <h2>What WordPress actually is</h2>
+
+      <p>WordPress started as a blogging platform in 2003 and has since grown into a full content management system (CMS). It's open-source software that you install on a web server, then extend with themes and plugins. The WordPress.org ecosystem has over 60,000 plugins covering everything from e-commerce (WooCommerce) to SEO (Yoast) to booking systems and membership portals.</p>
+
+      <p>That breadth is genuinely impressive. For a lot of business owners, being able to log in, write a blog post, upload an image, and publish — without touching any code — is exactly what they need. WordPress makes that straightforward.</p>
+
+      <p>What WordPress is not is a blank slate. You're working within its conventions, and the more you try to force it to behave like something it isn't, the more friction you'll encounter.</p>
+
+      <h2>What "custom" actually means</h2>
+
+      <p>A custom website is built from scratch by a developer or agency, without relying on a pre-existing CMS framework. The technology choices vary — some studios write static HTML and CSS, others use frameworks like React, Next.js, or Astro, and some build headless architectures where content is managed separately from the front end. What they share is that the codebase is written specifically for your project, not assembled from off-the-shelf parts.</p>
+
+      <p>This means more control, but also more cost and more responsibility. There's no plugin marketplace to lean on. Every feature that doesn't exist has to be built.</p>
+
+      <h2>A direct comparison</h2>
+
+      <div class="compare-grid">
+        <div class="compare-cell">
+          <div class="compare-label">Option A</div>
+          <div class="compare-title">WordPress</div>
+          <ul>
+            <li>Lower upfront cost</li>
+            <li>Large plugin ecosystem</li>
+            <li>Easy content editing for non-technical users</li>
+            <li>Huge community and documentation</li>
+            <li>Faster to launch a standard site</li>
+            <li>Plugin conflicts and bloat can slow things down</li>
+            <li>More frequent security patching required</li>
+            <li>Ongoing licence and hosting costs add up</li>
+            <li>Harder to achieve very specific designs or interactions</li>
+          </ul>
+        </div>
+        <div class="compare-cell">
+          <div class="compare-label">Option B</div>
+          <div class="compare-title">Custom build</div>
+          <ul>
+            <li>Higher upfront investment</li>
+            <li>Built precisely for your requirements</li>
+            <li>No plugin overhead — leaner, faster code</li>
+            <li>Smaller attack surface for security</li>
+            <li>Lower ongoing maintenance burden (no plugin updates)</li>
+            <li>Scales cleanly as requirements grow</li>
+            <li>You own the codebase entirely</li>
+            <li>Takes longer to build from scratch</li>
+            <li>Requires a developer for new features</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>Performance: where the gap is real</h2>
+
+      <p>Page speed affects your Google ranking, your bounce rate, and your conversion rate. On this measure, custom sites have a structural advantage.</p>
+
+      <p>A WordPress site loaded with a premium theme, a page builder, an SEO plugin, a caching plugin, a form plugin, and a chat widget is shipping a significant amount of code to every visitor — much of it unused on any given page. You can mitigate this with good hosting (managed WordPress hosts like Kinsta or WP Engine make a real difference) and careful plugin selection, but you're still fighting against the weight of the platform.</p>
+
+      <p>A custom-built site ships only what it needs. There's no abstraction layer between your design intent and the code in the browser. Done well, custom sites routinely score 95+ on Google's Lighthouse performance audit. That's harder to sustain with WordPress as complexity grows.</p>
+
+      <div class="callout">
+        <p><strong>Worth knowing:</strong> Core Web Vitals — Google's real-world performance signals (LCP, CLS, INP) — are ranking factors. A slower site isn't just a worse user experience; it's a competitive disadvantage in search.</p>
+      </div>
+
+      <h2>Security: the honest picture</h2>
+
+      <p>WordPress has a reputation for being insecure, which is partly fair and partly unfair. WordPress core is actively maintained by a large team and vulnerabilities are patched quickly. The real weak point is plugins: a poorly maintained or abandoned plugin can introduce serious vulnerabilities, and many site owners run dozens of them without reviewing them carefully.</p>
+
+      <p>Custom sites have a smaller attack surface by default. There's no login page at <code>/wp-admin</code> that automated bots probe continuously, no plugin ecosystem where a third-party developer's mistake becomes your problem. That said, custom code can have its own security flaws if the developer isn't careful. Security is about practice as much as platform.</p>
+
+      <p>If you're handling sensitive data — health records, financial information, client data — the additional scrutiny a custom build allows is worth considering seriously.</p>
+
+      <h2>Cost over time, not just upfront</h2>
+
+      <p>This is where a lot of businesses make the wrong call. WordPress looks cheaper at the start. A well-scoped WordPress project might cost £1,500–£3,000 to build. A custom site for the same brief might be £4,000–£8,000. The upfront difference is real.</p>
+
+      <p>But look at what accumulates with a WordPress site over three years:</p>
+
+      <ul>
+        <li>Premium theme licence: £50–£200/year</li>
+        <li>Essential plugin licences (SEO, forms, backups, security): £200–£600/year</li>
+        <li>Managed hosting: £300–£1,200/year</li>
+        <li>Developer time for updates, conflicts, and plugin incompatibilities: variable</li>
+      </ul>
+
+      <p>A custom-built static or lightly-dynamic site often runs on hosting costing £5–£20/month, with no licence fees and infrequent maintenance requirements. Over three to five years, the total cost of ownership can be comparable — or lower — than a WordPress site with a proper plugin stack.</p>
+
+      <p>This doesn't mean WordPress is a bad deal. It means the decision deserves a whole-life cost assessment, not just a comparison of build quotes.</p>
+
+      <h2>When WordPress is the right call</h2>
+
+      <ul>
+        <li>You publish content frequently and want a comfortable editing experience without developer involvement</li>
+        <li>You need e-commerce and WooCommerce covers your requirements</li>
+        <li>Your budget is limited and speed to launch matters more than performance perfection</li>
+        <li>You have an existing WordPress site that's working well and just needs a refresh</li>
+        <li>You need functionality (booking systems, membership portals, forums) that's available off the shelf through plugins</li>
+      </ul>
+
+      <h2>When a custom build makes more sense</h2>
+
+      <ul>
+        <li>Your website is central to how clients judge your business — it needs to look genuinely distinctive</li>
+        <li>Performance is a competitive priority (e-commerce, lead generation, high-traffic content)</li>
+        <li>You have specific functionality that no plugin handles well</li>
+        <li>Security requirements are elevated (regulated industries, sensitive data)</li>
+        <li>You're building something that will scale significantly and you don't want to re-platform in two years</li>
+        <li>You want full ownership and no dependency on third-party licences or a specific hosting environment</li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>The honest answer:</strong> Most small business brochure sites can be served well by a well-built WordPress installation. Most businesses competing primarily on brand, performance, or a distinctive digital experience will get more return from a custom build. <strong>The technology should serve the strategy, not the other way round.</strong></p>
+      </div>
+
+      <h2>A third option worth knowing about</h2>
+
+      <p>The WordPress-vs-custom framing misses a growing middle ground: <strong>headless CMS architectures</strong>. Here, you build a custom front end (typically using a modern JavaScript framework) but connect it to a CMS — which might be WordPress, Contentful, Sanity, or similar — purely for content management. You get the editing experience of a CMS with the performance and flexibility of a custom front end.</p>
+
+      <p>It's not the right answer for every project, and it adds complexity and cost. But if you want the best of both approaches and have the budget to support it, it's worth discussing with your agency.</p>
+
+      <h2>How to make the decision</h2>
+
+      <p>Start with these questions:</p>
+
+      <ul>
+        <li><strong>How often will you update the content?</strong> Frequently = favour WordPress. Rarely = custom is fine.</li>
+        <li><strong>How important is page speed to your business goals?</strong> Critical = lean towards custom.</li>
+        <li><strong>What's your three-year budget, not just upfront?</strong> Run the numbers on both scenarios.</li>
+        <li><strong>Does your site need to stand out visually?</strong> Distinctive design is easier with a blank canvas.</li>
+        <li><strong>Do you have developer support ongoing?</strong> WordPress needs more regular attention than a lean custom site.</li>
+      </ul>
+
+      <p>There's no universal right answer. The best web design agencies will recommend the approach that actually fits your goals — and be willing to tell you honestly when WordPress is the better choice, even if the custom build would be a larger project for them.</p>
+
+    </div>
+
+    <div class="article-faq">
+      <h2>Frequently asked questions</h2>
+
+      <div class="faq-item-article">
+        <h3>Is WordPress good for business websites?</h3>
+        <p>Yes — WordPress is a solid choice for many businesses, particularly those that need a content-heavy site, have limited budgets, or need to publish frequently. It becomes a poor fit when performance, security or a very specific user experience are top priorities.</p>
+      </div>
+
+      <div class="faq-item-article">
+        <h3>Is a custom website faster than WordPress?</h3>
+        <p>Generally, yes. A custom-built site ships only the code it needs, with no plugin overhead, and can be architected around modern performance techniques from day one. WordPress sites can be made fast, but it requires active effort and ongoing maintenance to sustain.</p>
+      </div>
+
+      <div class="faq-item-article">
+        <h3>How much more does a custom website cost than WordPress?</h3>
+        <p>Custom sites cost more upfront — typically starting from £3,000–£5,000 for a small business site versus £800–£2,500 for a managed WordPress build. However, custom sites often have lower ongoing costs because you're not paying for plugin licences, hosting upgrades, or frequent maintenance retainers.</p>
+      </div>
+
+      <div class="faq-item-article">
+        <h3>Is WordPress less secure than a custom website?</h3>
+        <p>WordPress core is well-maintained, but third-party plugins are the main vulnerability. A custom site has a smaller attack surface by default, but security depends on how well the code is written and kept up to date. Neither platform makes security automatic — it requires deliberate decisions.</p>
+      </div>
+
+      <div class="faq-item-article">
+        <h3>Can I switch from WordPress to a custom website later?</h3>
+        <p>Yes. Content can usually be migrated from WordPress, though the effort depends on how much you have and how structured it is. It's worth planning your content architecture carefully if you anticipate switching platforms in future.</p>
+      </div>
+    </div>
+
+    <div class="related-articles">
+      <h2>More from Aistrion</h2>
+      <div class="related-grid">
+        <a href="blog-website-cost.html" class="related-card">
+          <span class="related-tag">Pricing</span>
+          <span class="related-title">How much does a website cost in 2026? A complete guide</span>
+        </a>
+        <a href="blog-website-checklist.html" class="related-card">
+          <span class="related-tag">Strategy</span>
+          <span class="related-title">Website launch checklist: 12 things every site needs before going live</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="article-cta">
+      <h2>Not sure which approach is right for you?</h2>
+      <p>We'll recommend the right solution for your budget and goals — free, no commitment.</p>
+      <a href="/#contact">Book a free call →</a>
+    </div>
+  </article>
+</body>
+</html>
