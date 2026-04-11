@@ -1501,25 +1501,41 @@
       .tech-name { font-size: 0.68rem; }
 
       /* Blog — horizontal swipe carousel */
+      .blog-carousel-wrap { margin: 0 -20px; }
       .blog-grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        gap: 1px;
         background: var(--border);
-        border: 1px solid var(--border);
-        border-radius: 12px;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
       }
       .blog-grid::-webkit-scrollbar { display: none; }
       .blog-card {
-        min-width: 100%;
+        min-width: 100vw;
+        width: 100vw;
         scroll-snap-align: start;
         flex-shrink: 0;
         padding: 28px 24px;
         border-radius: 0;
+        border-right: 1px solid var(--border);
+        box-sizing: border-box;
       }
+      .blog-dots {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        padding: 16px 0 4px;
+      }
+      .blog-dot {
+        width: 6px; height: 6px;
+        border-radius: 50%;
+        background: var(--border);
+        transition: background 240ms;
+      }
+      .blog-dot.active { background: var(--ink); }
       .blog-header { flex-direction: column; align-items: flex-start; }
       .blog-headline { font-size: clamp(1.7rem, 6vw, 2.2rem); }
 
@@ -1980,25 +1996,32 @@
     <div class="blog-header reveal" data-delay="1">
       <h2 class="blog-headline">Insights on web design<br>and <em>digital growth</em></h2>
     </div>
-    <div class="blog-grid">
-      <article class="blog-card reveal" data-delay="1">
-        <div class="blog-card-tag">Performance</div>
-        <h3 class="blog-card-title"><a href="blog-core-web-vitals.html">Why your website's Core Web Vitals score directly affects your Google ranking</a></h3>
-        <p class="blog-card-excerpt">Google's ranking algorithm uses real-world page experience signals. We break down what LCP, CLS, and INP mean for your traffic — and how to fix them.</p>
-        <a href="blog-core-web-vitals.html" class="blog-read-more">Read article <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </article>
-      <article class="blog-card reveal" data-delay="2">
-        <div class="blog-card-tag">Strategy</div>
-        <h3 class="blog-card-title"><a href="blog-website-checklist.html">The small business website checklist: 12 things your site needs before you launch</a></h3>
-        <p class="blog-card-excerpt">From meta tags to mobile responsiveness, these are the twelve non-negotiables we check before any Aistrion site goes live — and why each one matters.</p>
-        <a href="blog-website-checklist.html" class="blog-read-more">Read article <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </article>
-      <article class="blog-card reveal" data-delay="3">
-        <div class="blog-card-tag">Design</div>
-        <h3 class="blog-card-title"><a href="blog-cro-vs-redesign.html">Conversion rate optimisation vs. redesign: which one does your site actually need?</a></h3>
-        <p class="blog-card-excerpt">A full redesign isn't always the answer. We explain how to diagnose whether your site has a design problem, a copy problem, or a trust problem — and act accordingly.</p>
-        <a href="blog-cro-vs-redesign.html" class="blog-read-more">Read article <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </article>
+    <div class="blog-carousel-wrap">
+      <div class="blog-grid" id="blogCarousel">
+        <article class="blog-card reveal" data-delay="1">
+          <div class="blog-card-tag">Performance</div>
+          <h3 class="blog-card-title"><a href="blog-core-web-vitals.html">Why your website's Core Web Vitals score directly affects your Google ranking</a></h3>
+          <p class="blog-card-excerpt">Google's ranking algorithm uses real-world page experience signals. We break down what LCP, CLS, and INP mean for your traffic — and how to fix them.</p>
+          <a href="blog-core-web-vitals.html" class="blog-read-more">Read article <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <article class="blog-card reveal" data-delay="2">
+          <div class="blog-card-tag">Strategy</div>
+          <h3 class="blog-card-title"><a href="blog-website-checklist.html">The small business website checklist: 12 things your site needs before you launch</a></h3>
+          <p class="blog-card-excerpt">From meta tags to mobile responsiveness, these are the twelve non-negotiables we check before any Aistrion site goes live — and why each one matters.</p>
+          <a href="blog-website-checklist.html" class="blog-read-more">Read article <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+        <article class="blog-card reveal" data-delay="3">
+          <div class="blog-card-tag">Design</div>
+          <h3 class="blog-card-title"><a href="blog-cro-vs-redesign.html">Conversion rate optimisation vs. redesign: which one does your site actually need?</a></h3>
+          <p class="blog-card-excerpt">A full redesign isn't always the answer. We explain how to diagnose whether your site has a design problem, a copy problem, or a trust problem — and act accordingly.</p>
+          <a href="blog-cro-vs-redesign.html" class="blog-read-more">Read article <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </article>
+      </div>
+      <div class="blog-dots" id="blogDots">
+        <span class="blog-dot active"></span>
+        <span class="blog-dot"></span>
+        <span class="blog-dot"></span>
+      </div>
     </div>
   </section>
 
@@ -2219,6 +2242,16 @@
         offset = startOffset + (e.touches[0].clientX - startX);
       }, { passive: true });
       marqueeStrip.addEventListener('touchend', () => { dragging = false; });
+    }
+
+    // ── BLOG CAROUSEL DOTS
+    const blogCarousel = document.getElementById('blogCarousel');
+    const blogDots = document.querySelectorAll('.blog-dot');
+    if (blogCarousel && blogDots.length) {
+      blogCarousel.addEventListener('scroll', () => {
+        const index = Math.round(blogCarousel.scrollLeft / blogCarousel.offsetWidth);
+        blogDots.forEach((d, i) => d.classList.toggle('active', i === index));
+      }, { passive: true });
     }
 
     // ── MAGNETIC BUTTONS
