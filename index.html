@@ -2137,6 +2137,7 @@
 
       const heroSection = document.querySelector('.hero');
       const heroSticky = document.querySelector('.hero-sticky');
+      const heroContent = document.querySelector('.hero-content');
       let rafId = null;
 
       function scrubVideo() {
@@ -2147,7 +2148,7 @@
         const duration = heroVideo.duration || 1;
         heroVideo.currentTime = progress * duration;
 
-        // On mobile: zoom out + shrink height in sync with scroll
+        // On mobile: zoom out + shrink height + collapse text into centre
         if (window.innerWidth <= 768) {
           // Height: 100vh → 65vh
           const startH = window.innerHeight;
@@ -2164,9 +2165,21 @@
             const scale = startScale + (1 - startScale) * progress;
             heroVideo.style.transform = `scale(${scale})`;
           }
+
+          // Text: scale down and fade into the centre of the video
+          if (heroContent) {
+            const textScale = 1 - progress * 0.55;
+            const textOpacity = 1 - progress * 1.4;
+            heroContent.style.transform = `scale(${textScale})`;
+            heroContent.style.opacity = Math.max(0, textOpacity);
+          }
         } else {
           heroSticky.style.height = '';
           heroVideo.style.transform = '';
+          if (heroContent) {
+            heroContent.style.transform = '';
+            heroContent.style.opacity = '';
+          }
         }
 
         rafId = null;
