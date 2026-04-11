@@ -2150,14 +2150,18 @@
 
         // On mobile: zoom out + shrink height + collapse text into centre
         if (window.innerWidth <= 768) {
-          // Height: 100vh → 65vh
           const startH = window.innerHeight;
-          const endH = window.innerHeight * 0.65;
+
+          // End height = exact height of video at scale 1 with contain
+          // (video is landscape so it's width-constrained on mobile)
+          const videoAspect = heroVideo.videoWidth ? heroVideo.videoWidth / heroVideo.videoHeight : 16 / 9;
+          const endH = heroVideo.videoWidth
+            ? Math.min(startH, window.innerWidth / videoAspect)
+            : startH * 0.65;
           heroSticky.style.height = (startH + (endH - startH) * progress) + 'px';
 
           // Scale: fill screen at start → 1 (full laptop visible) at end
           if (heroVideo.videoWidth) {
-            const videoAspect = heroVideo.videoWidth / heroVideo.videoHeight;
             const viewAspect = window.innerWidth / window.innerHeight;
             const startScale = videoAspect > viewAspect
               ? (window.innerHeight * videoAspect) / window.innerWidth
@@ -2166,9 +2170,9 @@
             heroVideo.style.transform = `scale(${scale})`;
           }
 
-          // Text: scale down into the centre of the video, no fade
+          // Text: shrink slightly into centre, stays readable
           if (heroContent) {
-            const textScale = 1 - progress * 0.55;
+            const textScale = 1 - progress * 0.2;
             heroContent.style.transform = `scale(${textScale})`;
             heroContent.style.opacity = '1';
           }
