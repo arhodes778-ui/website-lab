@@ -2136,6 +2136,7 @@
       document.addEventListener('click', unlockVideo, { once: true });
 
       const heroSection = document.querySelector('.hero');
+      const heroSticky = document.querySelector('.hero-sticky');
       let rafId = null;
 
       function scrubVideo() {
@@ -2146,17 +2147,25 @@
         const duration = heroVideo.duration || 1;
         heroVideo.currentTime = progress * duration;
 
-        // On mobile: zoom out from screen-filling to full laptop visible
-        if (window.innerWidth <= 768 && heroVideo.videoWidth) {
-          const videoAspect = heroVideo.videoWidth / heroVideo.videoHeight;
-          const viewAspect = window.innerWidth / window.innerHeight;
-          // Start scale: just enough to fill the screen (no letterbox bars)
-          const startScale = videoAspect > viewAspect
-            ? (window.innerHeight * videoAspect) / window.innerWidth
-            : window.innerWidth / (window.innerHeight * videoAspect);
-          const scale = startScale + (1 - startScale) * progress;
-          heroVideo.style.transform = `scale(${scale})`;
+        // On mobile: zoom out + shrink height in sync with scroll
+        if (window.innerWidth <= 768) {
+          // Height: 100vh → 65vh
+          const startH = window.innerHeight;
+          const endH = window.innerHeight * 0.65;
+          heroSticky.style.height = (startH + (endH - startH) * progress) + 'px';
+
+          // Scale: fill screen at start → 1 (full laptop visible) at end
+          if (heroVideo.videoWidth) {
+            const videoAspect = heroVideo.videoWidth / heroVideo.videoHeight;
+            const viewAspect = window.innerWidth / window.innerHeight;
+            const startScale = videoAspect > viewAspect
+              ? (window.innerHeight * videoAspect) / window.innerWidth
+              : window.innerWidth / (window.innerHeight * videoAspect);
+            const scale = startScale + (1 - startScale) * progress;
+            heroVideo.style.transform = `scale(${scale})`;
+          }
         } else {
+          heroSticky.style.height = '';
           heroVideo.style.transform = '';
         }
 
