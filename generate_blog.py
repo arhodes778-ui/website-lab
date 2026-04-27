@@ -249,7 +249,7 @@ Fonts: Instrument Serif (headings), Geist (body), Geist Mono (labels/mono)
 </html>"""
 
     response = client.messages.create(
-        model="claude-opus-4-6",
+        model="claude-sonnet-4-6",
         max_tokens=8000,
         system=system_prompt,
         messages=[{"role": "user", "content": prompt}]
