@@ -1470,14 +1470,10 @@
         overflow: hidden;
       }
       .hero-video {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        border-radius: 0;
-        margin: 0;
+        display: none;
+      }
+      .hero-video-clip {
+        background: #111111;
       }
       .hero-mask {
         display: block;
@@ -1632,7 +1628,7 @@
     <div class="hero-sticky">
     <!-- Video background -->
     <div class="hero-video-clip">
-      <video class="hero-video" muted playsinline preload="auto" id="heroVideo">
+      <video class="hero-video" muted playsinline preload="none" id="heroVideo">
         <source src="Website 1 scrub.mp4" type="video/mp4" />
       </video>
       <!-- Inward masking gradient -->
@@ -2150,7 +2146,10 @@
 
     // ── HERO VIDEO — scroll-scrub tied to 300vh hero section
     const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo) {
+    const isMobile = window.innerWidth <= 768;
+    if (heroVideo && !isMobile) {
+      heroVideo.preload = 'auto';
+      heroVideo.load();
       heroVideo.currentTime = 0;
 
       // Show video as soon as it has any data
@@ -2585,13 +2584,13 @@
         <p class="booking-subtitle">30 minutes · Free · No commitment</p>
 
         <div class="cal-nav">
-          <button class="cal-btn" id="calPrev">
+          <button class="cal-btn" id="calPrev" aria-label="Previous month">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M8 2L4 6l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
           <span class="cal-month" id="calMonth"></span>
-          <button class="cal-btn" id="calNext">
+          <button class="cal-btn" id="calNext" aria-label="Next month">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -2647,19 +2646,28 @@
     </div>
   </div>
 
-  <!-- reCAPTCHA -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    // ── CONFIG — replace these with your EmailJS values
+    // ── CONFIG
     const EMAILJS_PUBLIC_KEY  = '4CznvtUUvsCaiL9oP';
     const EMAILJS_SERVICE_ID  = 'service_4oqujfb';
-    const EMAILJS_TEMPLATE_NOTIFY = 'template_tv8gfaj';   // email to you
-    const EMAILJS_TEMPLATE_AUTO   = 'template_yvw1e1y';     // auto-reply to client
+    const EMAILJS_TEMPLATE_NOTIFY = 'template_tv8gfaj';
+    const EMAILJS_TEMPLATE_AUTO   = 'template_yvw1e1y';
 
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    // Lazy-load EmailJS + reCAPTCHA only when modal opens
+    let modalScriptsReady = false;
+    let modalScriptsLoading = false;
+    function loadModalScripts() {
+      if (modalScriptsReady || modalScriptsLoading) return;
+      modalScriptsLoading = true;
+      let loaded = 0;
+      const onLoad = () => { loaded++; if (loaded === 2) { emailjs.init(EMAILJS_PUBLIC_KEY); modalScriptsReady = true; } };
+      const ejs = document.createElement('script');
+      ejs.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      ejs.onload = onLoad; document.head.appendChild(ejs);
+      const rc = document.createElement('script');
+      rc.src = 'https://www.google.com/recaptcha/api.js';
+      rc.onload = onLoad; document.head.appendChild(rc);
+    }
 
     // ── CALENDAR
     const TIME_SLOTS = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM',
@@ -2774,6 +2782,7 @@
     // ── MODAL OPEN / CLOSE
     document.getElementById('openBooking').addEventListener('click', e => {
       e.preventDefault();
+      loadModalScripts();
       document.getElementById('bookingOverlay').classList.add('open');
       document.body.style.overflow = 'hidden';
     });
@@ -2790,7 +2799,7 @@
     document.getElementById('bookingForm').addEventListener('submit', async e => {
       e.preventDefault();
 
-      if (!grecaptcha.getResponse()) {
+      if (!modalScriptsReady || !grecaptcha.getResponse()) {
         alert('Please complete the reCAPTCHA to continue.');
         return;
       }
